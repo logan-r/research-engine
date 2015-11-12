@@ -7,7 +7,7 @@
 {% block p_content %}
 <h2 class="project-tab-header no-action-bar">
     <div class="parent-link">
-        <a href="http://localhost:8080/{{project.key.integer_id()}}/notebooks/{{notebook.key.integer_id()}}">
+        <a href="/{{project.key.integer_id()}}/notebooks/{{notebook.key.integer_id()}}">
             {{notebook.name | safe}}
         </a>
     </div>
@@ -29,7 +29,7 @@
 <div style="margin-top: 8px;">
     <small class="text-muted">
         Written by
-        <a href="/{{note.author.get().username}}" class="unstyled">{{note.author.get().username.capitalize()}}</a>
+        <a href="/{{note.get_author().username}}" class="unstyled">{{note.get_author().username.capitalize()}}</a>
         on {{note.date.strftime("%d %b %Y")}}
     </small>
 </div>
