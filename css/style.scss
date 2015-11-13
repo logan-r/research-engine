@@ -471,6 +471,33 @@ a {
 }
 
 
+/** Markdown edtior **/
+.editor-toolbar {
+	border-radius: 0;
+	border-color: #ccc;
+	opacity: 1 !important;
+}
+
+.editor-toolbar a {
+	color: $light-blue !important;
+	padding-bottom: 28px;
+}
+
+.editor-toolbar:hover a {
+	color: $dark-blue !important;
+}
+
+.editor-toolbar a:hover, .editor-toolbar a.active {
+	border-radius: 0;
+	border-color: #aaa;
+}
+
+.CodeMirror {
+	border-radius: 0;
+	border-color: #ccc;
+}
+
+
 /** Special Unique Elements **/
 
 #overview {

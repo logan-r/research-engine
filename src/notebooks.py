@@ -19,7 +19,7 @@ class Notebooks(ndb.Model):
     started = ndb.DateTimeProperty(auto_now_add = True)
     last_updated = ndb.DateTimeProperty(auto_now = True)
     shared_p = ndb.BooleanProperty(default = False)   # If true, all users can make notes in it and "owner" is meaningless
-    # For an open notebook it's one of ONS-ACI, ONS-ACD, ONS-SCI, ONS-SCD according in its (A)ll or (S)elected content and (I)mmediately or (D)elayed. 
+    # For an open notebook it's one of ONS-ACI, ONS-ACD, ONS-SCI, ONS-SCD according in its (A)ll or (S)elected content and (I)mmediately or (D)elayed.
     # Another option is "CNS" for closed notebooks.
     claims = ndb.StringProperty(required = True, default = 'ONS-ACI')
 
@@ -48,7 +48,7 @@ class Notebooks(ndb.Model):
         else:
             text += "after a significant delay."
         return text
-        
+
 
 
 # Each note should be a child of a Notebook.
@@ -75,7 +75,7 @@ class NotebookNotes(ndb.Model):
         notebook = self.key.parent().get()
         return user and (user.key == author.key)
 
-        
+
 # Each comment should be a child of a NotebookNote
 class NoteComments(ndb.Model):
     author = ndb.KeyProperty(kind = generic.RegisteredUsers, required = True)
@@ -120,7 +120,7 @@ class NotebooksListPage(NotebookPage):
     def get(self, projectid):
         user = self.get_login_user()
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -136,7 +136,7 @@ class NotebooksListPage(NotebookPage):
                     my_notebooks.append(n)
                 else:
                     other_notebooks.append(n)
-        self.render("notebooks_list.html", project = project, user = user, notebooks = notebooks, 
+        self.render("notebooks_list.html", project = project, user = user, notebooks = notebooks,
                     my_notebooks = my_notebooks, other_notebooks = other_notebooks, shared_notebooks = shared_notebooks)
 
 
@@ -147,7 +147,7 @@ class NewNotebookPage(NotebookPage):
             self.redirect("/login?goback=/%s/notebooks/new" % projectid)
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -190,9 +190,9 @@ class NewNotebookPage(NotebookPage):
         if have_error:
             self.render("notebook_new.html", project = project, action = "New", button_text = "Create notebook", **kw)
         else:
-            new_notebook = Notebooks(owner = user.key, 
-                                     name = kw["n_name"], 
-                                     description = kw["n_description"], 
+            new_notebook = Notebooks(owner = user.key,
+                                     name = kw["n_name"],
+                                     description = kw["n_description"],
                                      parent  = project.key,
                                      claims = kw["n_claims"],
                                      shared_p = kw["shared_p"])
@@ -222,7 +222,7 @@ class NotebookMainPage(NotebookPage):
         except ValueError:
             kw["page"] = 0
         kw["notes"], kw["next_page_cursor"], kw["more_p"] = self.get_notes_list(notebook, kw["page"])
-        self.render("notebook_main.html", project = project, notebook = notebook, 
+        self.render("notebook_main.html", project = project, notebook = notebook,
                     writable_p = user and (notebook.owner == user.key or notebook.shared_p),
                     owner = notebook.owner.get(), **kw)
 
@@ -373,7 +373,7 @@ class NotePage(NotebookPage):
         kw["comments"] = self.get_comments_list(note)
         self.render("notebook_note.html", project = project,
                     notebook = notebook, note = note, comment = '',
-                    note_editable_p = user and ((not notebook.shared_p and notebook.owner == user.key) 
+                    note_editable_p = user and ((not notebook.shared_p and notebook.owner == user.key)
                                                 or (notebook.shared_p and note.author == user.key)), **kw)
 
 
@@ -490,7 +490,7 @@ class EditNotePage(NotebookPage):
               "breadcrumb" : '<li><a href="%s">Notebooks</a></li><li><a href="%s">%s</a></li><li class="active">%s</li>'
               % (nbs_url, nb_url, notebook.name, note.title),
               "name_value" : note.title, "content_value" : note.content}
-        self.render("project_form_2.html", project = project, **kw)
+        self.render("project_name_description_form.html", project = project, **kw)
 
     def post(self, projectid, nbid, noteid):
         user = self.get_login_user()
@@ -532,7 +532,7 @@ class EditNotePage(NotebookPage):
                   "content_placeholder" : "Content of the note",
                   "submit_button_text" : "Create note",
                   "cancel_url" : "/%s/notebooks/%s" % (projectid, nbid),
-                  "breadcrumb" : '<li><a href="%s">Notebooks</a></li><li><a href="%s">%s</a></li><li class="active">%s</li>' 
+                  "breadcrumb" : '<li><a href="%s">Notebooks</a></li><li><a href="%s">%s</a></li><li class="active">%s</li>'
                   % (nbs_url, nb_url, notebook.name, note.title),
                   "name_value": n_title, "content_value": n_content, "error_message" : error_message}
             self.render("project_form_2.html", project = project, **kw)

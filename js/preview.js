@@ -7,7 +7,7 @@ var timer;
 
 var Preview = function(sourceId, destId, wiki_p_id) {
     clearTimeout(timer);
-    timer=setTimeout(function () 
+    timer=setTimeout(function ()
 		     {
 			 MathJax.InputJax.TeX.resetEquationNumbers();
 			 inputText = document.getElementById(sourceId).value;
@@ -20,4 +20,19 @@ var Preview = function(sourceId, destId, wiki_p_id) {
 				});
 		     },
 		     2000);
+};
+
+var mdEditorPreview = function(plainText, previewElement) {
+    clearTimeout(timer);
+    timer = setTimeout(function()  {
+        MathJax.InputJax.TeX.resetEquationNumbers();
+		$.post("/_preview",
+            {content : plainText},
+		    function (data, textStatus) {
+    		    previewElement.innerHTML = data;
+    		    MathJax.Hub.Queue(["Typeset", MathJax.Hub, destId]);
+    	    });
+	}, 2000);
+
+    return "Loading...";
 };

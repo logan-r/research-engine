@@ -1,0 +1,73 @@
+{% extends "project_base.html" %}
+
+{% block p_head %}
+    <script type="text/javascript" src="/js/preview.js"></script>
+{% endblock %}
+
+{% block p_content %}
+    <h2 class="project-tab-header no-action-bar">
+        {% if parent_link_text %}
+            <div class="parent-link">
+                <a href="{{parent_link_url}}">
+                    {{parent_link_text | safe}}
+                </a>
+            </div>
+        {% endif %}
+
+        {{title | safe}}
+        <a href="#project-menu" class="skiptocontent">Skip to project menu</a>
+    </h3>
+
+    <form method="post" role="form">
+        <div class="form-group {{nClass}}">
+            <input type="text" name="name" class="form-control input-lg" value="{{name_value}}" placeholder="{{name_placeholder}}" autofocus {% if disabled_p %}disabled{% endif %}/>
+        </div>
+        <div class="form-group {{cClass}}">
+            <textarea name="content" id="inputText" class="md-editor" placeholder="{{content_placeholder}}" {% if disabled_p %}disabled{% endif %}>{{content_value}}</textarea>
+        </div>
+    </form>
+
+    <script>
+        var mdEditor = new SimpleMDE({
+            element: $(".md-editor")[0],
+            toolbar: [
+                "bold",
+                "italic",
+                "|",
+                "link",
+                "image",
+                "|",
+                "quote",
+                "unordered-list",
+                "ordered-list",
+                "|",
+                "preview",
+                {
+                    name: "side-by-side",
+                    action: function() {
+                        $(".navbar").hide();
+                        mdEditor.toggleSideBySide();
+                    },
+                    className: "fa fa-columns no-disable no-mobile",
+                    title: "Toggle Side by Side (F9)"
+                },
+                {
+                    name: "fullscreen",
+                    action: function() {
+                        $(".navbar").toggle();
+                        mdEditor.toggleFullScreen();
+                    },
+                    className: "fa fa-arrows-alt no-disable no-mobile",
+                    title: "Toggle Fullscreen (F11)"
+                },
+                "|",
+                {
+                    name: "guide",
+                    action: "/static/edit_help.html",
+                    className: "fa fa-question-circle",
+                    title: "Markdown Guide"
+                },
+            ]
+        });
+    </script>
+{% endblock %}
