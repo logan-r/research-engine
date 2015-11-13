@@ -478,23 +478,43 @@ a {
 	opacity: 1 !important;
 }
 
-.editor-toolbar a {
+.editor-toolbar > a {
 	color: $light-blue !important;
 	padding-bottom: 28px;
 }
 
-.editor-toolbar:hover a {
+.editor-toolbar:hover > a {
 	color: $dark-blue !important;
 }
 
-.editor-toolbar a:hover, .editor-toolbar a.active {
+.editor-toolbar > a:hover, .editor-toolbar > a.active {
 	border-radius: 0;
 	border-color: #aaa;
+}
+
+.editor-toolbar .popover {
+	top: 38px !important;
+	border-radius: 0;
+	text-align: center;
+	border-color: #ccc;
+}
+
+.editor-toolbar .popover .arrow {
+	border-bottom-color: #a3a3a3;
+}
+
+.editor-toolbar .popover .popover-title {
+	background: #fff;
 }
 
 .CodeMirror {
 	border-radius: 0;
 	border-color: #ccc;
+}
+
+.editor-statusbar span {
+	min-width: unset;
+	margin-left: 2em;
 }
 
 
