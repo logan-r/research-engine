@@ -2,20 +2,39 @@
 <html lang="en">
   <head>
     <title>Research Engine | Edit help</title>
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    
+
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/pygments.css" />
     <style>
-      .result {
-      padding: 9.5px;
-      border: 1px solid rgb(204, 204, 204);
-      margin: 0px 0px 10px;
-      border-radius: 4px;
-      }
+        .result {
+            padding: 9.5px;
+            border: 1px solid rgb(204, 204, 204);
+            margin: 0px 0px 10px;
+            border-radius: 4px;
+        }
+
+        h3 {
+            color: #336666;
+            margin-top: 0;
+            padding-top: 20px;
+        }
+
+        .nav li a {
+            color: #336666;
+        }
+
+        .nav li.active a {
+            background: #336666;
+        }
+
+        .nav li.active a:hover {
+            background: #205353;
+        }
     </style>
-    
+
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript">
       MathJax.Hub.Config({
@@ -23,14 +42,13 @@
 			});
     </script>
   </head>
-  
+
   <body data-spy="scroll" data-target="#page-nav">
     <div class="container">
       <div class="row">
 	<div class="col-md-3">
 	  <div style="position: fixed">
-	    <h2>Editing help</h2>
-	    <hr>
+	    <h2 class="page-title-centered">Editing help</h2>
 	    <div id="page-nav">
 	      <ul class="nav nav-pills nav-stacked">
 		<li><a href="#paragraphs">Paragraphs and linebreaks</a></li>
@@ -51,9 +69,9 @@
 	</div>
 	<div class="col-md-9">
 	  <div style="margin-top: 20px;">
-	    
+
 	    <p>In <a href="http://research-engine.appspot.com">Research Engine</a> some areas are formatted according to the <a href="http://daringfireball.net/projects/markdown/syntax">Markdown syntax</a> with a bit of <a href="http://github.github.com/github-flavored-markdown/">GitHub flavor</a> and the addition of <a href="http://www.mathjax.org/">Mathjax</a> for math rendering. Below you can find a quick guide to some of the most common edditing tasks. For a complete reference please follow the previous links.</p>
-	    
+
 	    <h3 id="paragraphs">Paragraphs and linebreaks and headers</h3>
 	    <p>Paragraphs are just lines of text separated with whitespace. You can safely use linebreaks inside a paragraph and they will be rendered as expected. For example:</p>
 
@@ -66,8 +84,8 @@ Was sick almost to doomsday with eclipse.</pre>
 	    <div class="result">Disasters in the sun; and the moist star,<br>
 	      Upon whose influence Neptune's empire stands,<br>
 	      Was sick almost to doomsday with eclipse.</div>
-	    
-	    
+
+
 	    <h3 id="headers">Headers</h3>
 	    <p>There are two styles of headers. For first-level and second level headers you can use a line of equal signs and dashes respectively.</p>
 
@@ -77,7 +95,7 @@ Was sick almost to doomsday with eclipse.</pre>
 
 This is a second-level header
 -----------------------------</pre>
-	    
+
 	    <p>Another option is to start the line with a hash character indicating the level of the header</p>
 
 	    <pre># This is a first-level header
@@ -92,32 +110,32 @@ This is a second-level header
 ### This is a third-level header ###################</pre>
 
 	    <p>You can produde a Table of contents from your headers by writing <code>[TOC]</code> in the place you want it to appear.<p/>
-	      
+
 	      <h3 id="text">Bold and Italics</h3>
 	    <p>Asterisk (*) and underscores (_) are used interchangeably as indicators of <em>italics</em> (or emphasis). If you use double asterisks (**) or underscores (__) you will get bold font. For example
-	      
+
 	      <pre>*Italic*
 **Bold**
 This is an *inline italic* with multiple words. Same with **bold words**.
 
 You can still use * safely if you surround it with whitespace</pre></div>
-	  
+
 	  <p>is rendered as</p>
-	  
+
 	  <div class="result"><em>Italic</em><br>
 	    <strong>Bold</strong><br>
 	    This is an <em>inline italic</em> with multiple words. Same with <strong>bold words</strong>.<br><br>
 	    You can still use * safely if you surround it with whitespace</div>
-	  
+
 	  <h3 id="lists">Lists</h3>
 	  <p>Unordered lists use asterisks (*) pluses (+) and hyphens (-) interchangeably as list markers. For example</p>
 
 	  <pre>* Red
 * Green
 * Blue</pre>
-	  
+
 	  <p> is equivalent to</p>
-	  
+
 	  <pre>+ Red
 + Green
 + Blue</pre>
@@ -129,7 +147,7 @@ You can still use * safely if you surround it with whitespace</pre></div>
 - Blue</pre>
 
 	  <p>All three get rendered as</p>
-	  
+
 	  <div class="result">
 	    <ul style="margin-bottom: 0px;">
 	      <li>Red</li>
@@ -137,15 +155,15 @@ You can still use * safely if you surround it with whitespace</pre></div>
 	      <li>Blue</li>
 	    </ul>
 	  </div>
-	  
+
 	  <p>Orered lists use numbers followed by periods. For example</p>
 
 	  <pre>1. Mexico
 2. Tegucigalpa
 3. Buenos Aires</pre>
-	  
+
 	  <p>becomes</p>
-	  
+
 	  <div class="result">
 	    <ol style="margin-bottom: 0px;">
 	      <li>Mexico</li>
@@ -153,19 +171,19 @@ You can still use * safely if you surround it with whitespace</pre></div>
 	      <li>Buenos Aires</li>
 	    </ol>
 	  </div>
-	  
+
 	  <p>Notice that the actual numbers used to generate the list have no impact in the generated output. So you would get the same output if you write instead</p>
-	  
+
 	  <pre>18. Mexico
 1. Tegucigalpa
 25. Buenos Aires</pre>
-	  
+
 	  <p>This could generate some unintentional lists. To avoid this problem you will need to escape the period after the number. For example to generate the paragraph</p>
 
 	  <div class="result">1986. What a great season.</div>
-	  
+
 	  <p>you need to write</p>
-	  
+
 	  <pre>1986\. What a great season.</pre>
 
 	  <h3 id="tables">Tables</h3>
@@ -176,9 +194,9 @@ You can still use * safely if you surround it with whitespace</pre></div>
 ------------- | -------------
 Content Cell  | Content Cell
 Content Cell  | Content Cell</pre>
-	  
+
 	  <p>And it will be rendered as</p>
-	  
+
 	  <div class="result">
 	    <table>
 	      <thead>
@@ -199,20 +217,20 @@ Content Cell  | Content Cell</pre>
 	      </tbody>
 	    </table>
 					</div>
-	  
+
 	  <p>See <a href="http://michelf.ca/projects/php-markdown/extra/#table">here</a> for more options.</p>
-	  
+
 	  <h3 id="code">Code</h3>
 	  <p>To indicate a span of code wrap it with backtick quotes (`). This produces inline code, for example</p>
 
 	  <pre>To define a function in Common Lisp use the `(defun ...)` construct.</pre>
 
 	  <p>produces</p>
-	  
+
 	  <div class="result">
 	    To define a function in Common Lisp use the <code>(defun ...)</code> construct.
 	  </div>
-	  
+
 	  <p>You have several options to produce a block of code. One option is to indent each line by 4 spaces or 1 tab </p>
 
 	  <pre>    def hello(name = None):
@@ -245,7 +263,7 @@ def hello(name = None):
 ```</pre>
 
 	  <p>all examples are rendered as</p>
-	  
+
 	  <div class="result"><pre><code>def hello(name = None):
     if name:
         print "Hello " + name
@@ -291,7 +309,7 @@ def hello(name = None):
 	  </pre>
 
 	  which produces
-	  
+
 	  <table class="codehilitetable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -305,7 +323,7 @@ def hello(name = None):
     <span class="k">return</span>
 </pre></div>
 </td></tr></tbody></table>
-	  
+
 	  <p>Alternative, if your code already starts with a <em>shebang</em>, it will be preserved and the language canbe guessed from there</p>
 
 	  <pre>
@@ -338,7 +356,7 @@ def hello(name = None):
 
 	  <h3 id="quotes">Quotes</h3>
 	  <p>Quotation is handled in email-style with the &gt; sign. If you want to make a line appear as a quote you just prefix it with &gt;. If the quote contains several lines you need to quote them all. Remember that quotes can be nested. Here is an example:
-	    
+
 	    <pre>&gt; This line will be quoted.
 &gt; You need to quote each line individually
 &gt;
@@ -347,7 +365,7 @@ def hello(name = None):
 &gt; Here is a long line quoted. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem.</pre>
 
 	  <p>which is rendered as</p>
-	  
+
 	  <div class="result">
 	    <blockquote style="margin-bottom: 0px;">
 	      <p>
@@ -368,61 +386,61 @@ def hello(name = None):
 	      </p>
 	    </blockquote>
 	  </div>
-	  
+
 	  <h3 id="links">Links</h3>
 	  <p>There are two styles of links: <em>inline</em> and <em>reference</em>. In both styles the link text is delimited by [square brackets] The text in the square brackets is the text that will be shown. For inline links you follow them by a set of regular parentheses indicating the URL where you want the link to pint, for example</p>
-	  
+
 	  <pre>My favorite search engine is [DuckDuckGo](https://duckduckgo.com/ "Optional title here").</pre>
-	  
+
 	  <p>is transformed to</p>
-	  
+
 	  <div class="result">
 	    My favorite search engine is <a href="https://duckduckgo.com/" title="An optional title here">DuckDuckGo</a>.
 	  </div>
-	  
+
 	  <p>In <em>reference</em> links the first set of square brackets is followed by a second indicating a label to identify the link:
-	    
+
 	    <pre>But [Google][id] is my second favorite.</pre>
-	    
+
 	  <p>Then anywhere in the document you define the link label</p>
-	  
+
 	  <pre>[id]: https://www.google.com/ "Optional title here"</pre>
-	  
+
 	  <p>This produces the expected output:</p>
-	  
+
 	  <div class="result">
 	    But <a href="https://www.google.com/" title="Optional title here">Google</a> is my second favorite.
 	  </div>
-	  
+
 	  <p>You can leave out the label in a reference link and the link text will be used as a label. For example
-	    
+
 	    <pre>I highly recommend you reading [Cory Doctorow][]. He's a terrific writter.
-	      
+
 	      [Cory Doctorow]: http://craphound.com/ "Doctorow's blog"</pre>
-	    
+
 	  <p>Notice that you can have spaces in the text link.</p> Finally, you can also have an URL transformed automatically into a link if you surround it with angle brackets:</p>
-	  
+
 	  <pre>This will be linked automatically: &lt;http://example.com&gt;</pre>
-	  
+
 	  <p>becomes</p>
-	  
+
 	  <div class="result">This will be linked automatically: <a href="http://example.com">http://example.com</a></div>
 
 	  <p>You can have a <a href="http://www.doi.org/index.html" title="Digital Object Identifier">doi</a> autolinked by writing it in the following syntax:</p>
-	  
+
 	  <pre>This is a link to a journal article doi:10.1038/nmat2315</pre>
-	  
+
 	  <p>which will be transformed into a link like this</p>
-	  
+
 	  <div class="result">
 	    This is a link to a journal artile <a href="http://dx.doi.org/10.1038/nmat2315">doi:10.1038/nmat2315</a>
 	  </div>
-	  
+
 	  <p>You can use "doi", "DOI" or "Doi" with the same result</p>
-	  
+
 	  <h3 id="images">Images</h3>
 	  <p>The syntax for images resembles the link syntax. You just need to prefix the first set of square brackets with an exclamation mark. It can be done in both <em>inline</em> and <em>reference</em> styles.
-	    
+
 	    <pre>![Alt text](http://domain.com/my_image.png "Optional title")
 
 
@@ -434,9 +452,9 @@ def hello(name = None):
 	  <p>Markdown allows you to use backslash escapes to generate literal characters which would otherwise have special meaning in Markdown&#8217;s formatting syntax. To do this you just need to escape it with a backslash:</p>
 
 	  <div class="md-example"><pre>\*literal asterisks\*</pre></div>
-	  
+
 	  <p>Markdown provides backslash escapes for the following characters:</p>
-	  
+
 	  <pre>\   backslash
 `   backtick
 *   asterisk
@@ -453,21 +471,21 @@ _   underscore
 
 	  <h3 id="math">Mathematics</h3>
 	  <p>We use <a href="http://www.mathjax.org">Mathjax</a> as the display engine for mathematics using <a href="http://en.wikipedia.org/wiki/LaTeX"> $\LaTeX$</a> syntax. The delimiters are <code>$ ... $</code> for inline math and <code>$$ ... $$</code> for displayed equations. This is an example: </p>
-	  
+
 	  <pre>This equation: $e^{i\pi + 1} = 0$ is one of my favorites, but this one
 $$ - \frac{\hbar^2}{2 m}\frac{\partial^2 \psi(x)}{\partial x^2} = E \psi(x) $$
 looks far more impressive.</pre>
 
 	  <p>which is displayed as:</p>
-	  
+
 	  <div class="result">This equation: $e^{i\pi + 1} = 0$ is one of my favorites, but this one<br />
 $$ - \frac{\hbar^2}{2 m}\frac{\partial^2 \psi(x)}{\partial x^2} = E \psi(x) $$
 looks far more impressive.</div>
 
 	  <p>You can right-click at the rendered equation and copy the $\LaTeX$ code to your clipboard. Notice that equations will not be rendered inside code blocks.</p>
-	  
+
 	  <p>If you want to write literal dollar signs \$ you will need to escape them with a backslash <code>\$</code>.
-	    
+
 	    <h3 id="generalhtml">General HTML</h3>
 	  <p>If you know HTML you can write the code and Markdown will (hopefully) interpret it correctly.</p>
 	</div>
