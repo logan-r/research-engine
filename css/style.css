@@ -2,6 +2,29 @@
  * Header color scheme: http://paletton.com/#uid=73i0u0k5lll1Iwb3uq77ogW9yaY
  * Main color scheme: http://paletton.com/#uid=73i0u0kg0ll7luZbPpCjKhjotdt
  */
+/** Code **/
+.codehilite, .linenodiv {
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+.codehilite pre {
+  padding: 16px; }
+
+.codehilite pre, .linenodiv pre {
+  border-radius: 0;
+  border: none;
+  font-family: "Roboto Mono", Consolas, monospace;
+  margin-bottom: 0; }
+
+.linenodiv pre {
+  background: #e5e5e5;
+  color: #333;
+  padding-top: 16px;
+  padding-bottom: 16px; }
+
+.codehilite pre > span {
+  font-family: "Roboto Mono", Consolas, monospace; }
+
 /** Typography **/
 * {
   font-family: Roboto, sans-serif;

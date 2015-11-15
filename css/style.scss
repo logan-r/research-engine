@@ -6,6 +6,7 @@
 $body-font: Roboto, sans-serif;
 $header-font: Raleway, sans-serif;
 $logo-font: 'Titillium Web', sans-serif;
+$code-font: 'Roboto Mono', Consolas, monospace;
 
 $light-font-color: #EEEEEE;
 $light-muted-font-color: #CCCCCC;
@@ -45,6 +46,39 @@ $header-dark-grey-transparent: rgba(51, 51, 51, .5);
 $light-border: 1px solid;
 $medium-border: 5px solid;
 $heavy-border: 10px solid;
+
+
+/** Code **/
+.codehilitetable {
+}
+
+.codehilite, .linenodiv {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.codehilite pre {
+	padding: 16px;
+}
+
+.codehilite pre, .linenodiv pre {
+	border-radius: 0;
+	border: none;
+	font-family: $code-font;
+	margin-bottom: 0;
+}
+
+.linenodiv pre {
+	background: #e5e5e5;
+	color: #333;
+	padding-top: 16px;
+	padding-bottom: 16px;
+}
+
+.codehilite pre > span {
+	font-family: $code-font;
+}
+
 
 /** Typography **/
 
