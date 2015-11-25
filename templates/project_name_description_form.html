@@ -42,12 +42,40 @@
         </div>
     </form>
 
+    <div id="link-popover" class="hidden">
+        <div class="popover-tabs">
+            <button class="btn btn-link active">To Webpage</button>
+            <button class="btn btn-link">To Wiki Page</button>
+        </div>
+        <div class="popover-body form-container">
+            <div class="form-group">
+                <input type="url" class="form-control input-block input-group first" placeholder="Link url">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control input-block input-group" placeholder="Link text">
+            </div>
+            <a class="btn btn-link btn-insert">
+                Insert Link
+            </a>
+        </div>
+    </div>
+
     <div id="image-popover" class="hidden">
-        <button class="btn btn-link">From web</button> <button class="btn btn-link">Upload</button>
-        <br>
-        <input type="text" class="form-control input-block" placeholder="Image url">
-        <br>
-        <button class="btn btn-default">Insert</button>
+        <div class="popover-tabs">
+            <button class="btn btn-link active">From Web</button>
+            <button class="btn btn-link">Upload</button>
+        </div>
+        <div class="popover-body form-container">
+            <div class="form-group">
+                <input type="url" class="form-control input-block input-group first" placeholder="Image url">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control input-block input-group" placeholder="Image title (optional)">
+            </div>
+            <a class="btn btn-link btn-insert">
+                Insert Image
+            </a>
+        </div>
     </div>
 
     <script>
@@ -58,11 +86,15 @@
                 "bold",
                 "italic",
                 "|",
-                "link",
+                {
+                    name: "link",
+                    action: function() {},
+                    className: "fa fa-link",
+                    title: "Insert Link (Ctrl+K)"
+                },
                 {
                     name: "image",
-                    action: function() {
-                    },
+                    action: function() {},
                     className: "fa fa-picture-o",
                     title: "Insert Image (Ctrl+Alt+I)"
                 },
@@ -101,12 +133,21 @@
         });
 
         $(function () {
+            $(".editor-toolbar a.fa-link").popover({
+                title: "Insert Link",
+                placement: "bottom",
+                html: true,
+                trigger: "click focus",
+                content: $("#link-popover").html()
+            });
+
             $(".editor-toolbar a.fa-picture-o").popover({
                 title: "Insert Image",
                 placement: "bottom",
                 html: true,
+                trigger: "click focus",
                 content: $("#image-popover").html()
-            })
+            });
         });
     </script>
 {% endblock %}
