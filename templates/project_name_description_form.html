@@ -45,16 +45,16 @@
     <div id="link-popover" class="hidden">
         <div class="popover-tabs">
             <button class="btn btn-link active">To Webpage</button>
-            <button class="btn btn-link">To Wiki Page</button>
+            <button class="btn btn-link" disabled>To Wiki Page</button>
         </div>
         <div class="popover-body form-container">
             <div class="form-group">
-                <input type="url" class="form-control input-block input-group first" placeholder="Link url">
+                <input type="url" id="link-popover-url" class="form-control input-block input-group first" placeholder='Link url (include "http://")'>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control input-block input-group" placeholder="Link text">
+                <input type="text" id="link-popover-text" class="form-control input-block input-group" placeholder="Link text">
             </div>
-            <a class="btn btn-link btn-insert">
+            <a class="btn btn-link btn-insert" onclick="mdEditorInsertLink()">
                 Insert Link
             </a>
         </div>
@@ -63,16 +63,16 @@
     <div id="image-popover" class="hidden">
         <div class="popover-tabs">
             <button class="btn btn-link active">From Web</button>
-            <button class="btn btn-link">Upload</button>
+            <button class="btn btn-link" disabled>Upload</button>
         </div>
         <div class="popover-body form-container">
             <div class="form-group">
-                <input type="url" class="form-control input-block input-group first" placeholder="Image url">
+                <input type="url" class="form-control input-block input-group first" id="image-popover-url" placeholder='Image url (include "http://")'>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control input-block input-group" placeholder="Image title (optional)">
+                <input type="text" class="form-control input-block input-group" id="image-popover-title" placeholder="Image title (optional)">
             </div>
-            <a class="btn btn-link btn-insert">
+            <a class="btn btn-link btn-insert" onclick="mdEditorInsertImage()">
                 Insert Image
             </a>
         </div>
@@ -132,22 +132,34 @@
             ]
         });
 
-        $(function () {
+        // Setup md-editor popovers
+        $(function() {
             $(".editor-toolbar a.fa-link").popover({
                 title: "Insert Link",
                 placement: "bottom",
                 html: true,
-                trigger: "click focus",
+                trigger: "click",
                 content: $("#link-popover").html()
             });
-
             $(".editor-toolbar a.fa-picture-o").popover({
                 title: "Insert Image",
                 placement: "bottom",
                 html: true,
-                trigger: "click focus",
+                trigger: "click",
                 content: $("#image-popover").html()
             });
         });
+
+        // Setup md-editor submission/insert button click events
+        var mdEditorInsertLink = function() {
+            mdEditor.options.insertTexts.link = ["", "[" + $("#link-popover-text").val() + "](" + $("#link-popover-url").val() + ")"];
+            mdEditor.drawLink(mdEditor);
+            $(".editor-toolbar a.fa-link").popover('hide');
+        }
+        var mdEditorInsertImage = function() {
+            mdEditor.options.insertTexts.image = ["", "![" + $("#image-popover-title").val() + "](" + $("#image-popover-url").val() + ")"];
+            mdEditor.drawImage(mdEditor);
+            $(".editor-toolbar a.fa-picture-o").popover('hide');
+        }
     </script>
 {% endblock %}
