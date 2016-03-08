@@ -82,6 +82,9 @@
         var mdEditor = new SimpleMDE({
             element: $(".md-editor")[0],
             spellChecker: false,
+            renderingConfig: {
+                codeSyntaxHighlighting: true
+            },
             toolbar: [
                 "bold",
                 "italic",

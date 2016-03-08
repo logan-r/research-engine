@@ -3,6 +3,11 @@
  * Main color scheme: http://paletton.com/#uid=73i0u0kg0ll7luZbPpCjKhjotdt
  */
 /** Code **/
+.codehilitetable > tbody > tr > td {
+  /* Override md-editor's default table padding and border */
+  border: none !important;
+  padding: 0 !important; }
+
 .codehilite, .linenodiv {
   margin-top: 10px;
   margin-bottom: 10px; }

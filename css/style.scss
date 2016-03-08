@@ -49,7 +49,10 @@ $heavy-border: 10px solid;
 
 
 /** Code **/
-.codehilitetable {
+.codehilitetable > tbody > tr > td {
+	/* Override md-editor's default table padding and border */
+	border: none !important;
+	padding: 0 !important;
 }
 
 .codehilite, .linenodiv {
