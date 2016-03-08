@@ -331,7 +331,11 @@ a {
 .editor-toolbar {
   border-radius: 0;
   border-color: #ccc;
-  opacity: 1 !important; }
+  opacity: 1 !important;
+  /* Alight help and preview buttons to the right edge of the toolbar */ }
+  .editor-toolbar .fa-question-circle {
+    float: right;
+    color: #f00; }
 
 .editor-toolbar > a {
   color: #5C6989 !important;

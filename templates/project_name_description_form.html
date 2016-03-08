@@ -44,12 +44,12 @@
 
     <div id="link-popover" class="hidden">
         <div class="popover-tabs">
-            <button class="btn btn-link active">To Webpage</button>
+            <button class="btn btn-link active" disabled style="opacity: 1;">To Webpage</button>
             <button class="btn btn-link" disabled>To Wiki Page</button>
         </div>
         <div class="popover-body form-container">
             <div class="form-group">
-                <input type="url" id="link-popover-url" class="form-control input-block input-group first" placeholder='Link url (include "http://")'>
+                <input type="url" id="link-popover-url" class="form-control input-block input-group first" placeholder='Link url'>
             </div>
             <div class="form-group">
                 <input type="text" id="link-popover-text" class="form-control input-block input-group" placeholder="Link text">
@@ -62,12 +62,12 @@
 
     <div id="image-popover" class="hidden">
         <div class="popover-tabs">
-            <button class="btn btn-link active">From Web</button>
+            <button class="btn btn-link active" disabled style="opacity: 1;">From Web</button>
             <button class="btn btn-link" disabled>Upload</button>
         </div>
         <div class="popover-body form-container">
             <div class="form-group">
-                <input type="url" class="form-control input-block input-group first" id="image-popover-url" placeholder='Image url (include "http://")'>
+                <input type="url" class="form-control input-block input-group first" id="image-popover-url" placeholder='Image url'>
             </div>
             <div class="form-group">
                 <input type="text" class="form-control input-block input-group" id="image-popover-title" placeholder="Image title (optional)">
@@ -107,25 +107,6 @@
                 "ordered-list",
                 "|",
                 "preview",
-                {
-                    name: "side-by-side",
-                    action: function() {
-                        $(".navbar").hide();
-                        mdEditor.toggleSideBySide();
-                    },
-                    className: "fa fa-columns no-disable no-mobile",
-                    title: "Toggle Side by Side (F9)"
-                },
-                {
-                    name: "fullscreen",
-                    action: function() {
-                        $(".navbar").toggle();
-                        mdEditor.toggleFullScreen();
-                    },
-                    className: "fa fa-arrows-alt no-disable no-mobile",
-                    title: "Toggle Fullscreen (F11)"
-                },
-                "|",
                 {
                     name: "guide",
                     action: "/static/edit_help.html",
