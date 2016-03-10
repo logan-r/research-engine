@@ -50,18 +50,7 @@
 
 </form>
 
-{% if info_message %}<div style="margin-top:10px;" class="alert alert-success">{{info_message | safe}}</div>{% endif %}
+    {% if info_message %}<div style="margin-top:10px;" class="alert alert-success">{{info_message | safe}}</div>{% endif %}
 
-{% if markdown_p %}
-<div>Below is a preview of how the text will be renderer when you save it. </div>
-<div class="panel panel-default">
-  <div class="panel-body" id="previewArea">
-    <em>Start typing above to see a preview here.</em>
-  </div>
-</div>
-{% endif %}
-
-<script>
-    var mdEditor = new SimpleMDE({ element: $(".md-editor")[0] });
-</script>
+    {% include "md_editor_setup.html" %}
 {% endblock %}

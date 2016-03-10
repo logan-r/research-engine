@@ -106,15 +106,5 @@
             </div>
         {% endif %}
 
-        <span class="help-block">
-            Click <a href="/static/edit_help.html" target="_blank">here</a> to view some editing help (opens in a new window).
-        </span>
-    </form>
-
-    <div>Below is a preview of how the page will be renderer when you save it.</div>
-    <div class="panel panel-default">
-        <div class="panel-body" id="previewArea">
-            <em>Start typing above to see a preview here.</em>
-        </div>
-    </div>
+        {% include "md_editor_setup.html" %}
 {% endblock %}

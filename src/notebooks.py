@@ -251,7 +251,8 @@ class NewNotePage(NotebookPage):
                 "title" : "New note",
                 "parent_link_text": notebook.name,
                 "parent_link_url": parent_url,
-                "name_placeholder" : "Title of the note",
+                "name_title" : "Note's Title",
+                "content_title" : "Note's Content",
                 "name_value" : "",
                 "content_value" : ""
               }

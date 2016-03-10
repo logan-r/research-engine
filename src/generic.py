@@ -19,6 +19,7 @@ DEBUG = True             # Debug messages using logging.debug
 SALT_LENGTH = 16
 
 jinja_env.filters['md'] = filters.md
+jinja_env.filters['nowhitespace'] = filters.noWhitespace
 
 # You should change these if you are registering your own app on App Engine
 APP_NAME = "Research Engine"
