@@ -33,7 +33,7 @@
         </div>
     {% endif %}
 
-    <form method="post" role="form" id="project-name-description-form">
+    <form method="post" role="form" id="project-name-description-form" class="vertical-form">
         <div class="form-group {{nClass}}">
             <label for="name">{{name_title}}</label>
             <input type="text" id="name" name="name" class="form-control input-lg" value="{{name_value}}" autofocus {% if disabled_p %}disabled{% endif %}/>

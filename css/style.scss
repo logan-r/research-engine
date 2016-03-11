@@ -153,6 +153,16 @@ textarea {
 	border-color: $dark-blue;
 }
 
+.vertical-form {
+	> .form-group:not(:first-child) {
+		margin-top: 24px;
+	}
+
+	> * > label {
+		margin-left: 2px;
+	}
+}
+
 .alert {
 	border-radius: 0;
 }
@@ -616,6 +626,10 @@ a {
 .CodeMirror {
 	border-radius: 0;
 	border-color: #ccc;
+}
+
+.CodeMirror, .CodeMirror-scroll {
+    min-height: 190px;
 }
 
 .editor-statusbar span {

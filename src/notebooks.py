@@ -486,8 +486,9 @@ class EditNotePage(NotebookPage):
             "title" : "Edit note",
             "parent_link_text": notebook.name,
             "parent_link_url": nb_url,
-            "name_placeholder" : "Title of the note",
+            "name_title" : "Note's Title",
             "name_value" : note.title,
+            "content_title" : "Note's Content",
             "content_value" : note.content
         }
         self.render("project_name_description_form.html", project = project, **kw)

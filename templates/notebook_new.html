@@ -22,82 +22,109 @@
         <a href="#project-menu" class="skiptocontent">Skip to project menu</a>
     </h2>
 
-    <form method="post" role="form">
+    <form method="post" role="form" class="vertical-form">
         <div class="form-group {{nClass}}">
-            <input type="text" name="name" class="form-control" value="{{n_name}}" placeholder="Title of the notebook" autofocus {% if visitor_p %}disabled{% endif %}/>
-        </div>
-        <div class="form-group {{dClass}}">
-            <textarea name="description" id="inputText" placeholder="Description of the notebook" onKeyUp="Preview('inputText','previewArea');"
-            class="form-control" rows="10"{% if visior_p %} disabled{% endif %}>{{n_description}}</textarea>
+            <label for="name">Notebook's Title</label>
+            <input type="text" name="name" class="form-control input-lg" value="{{n_name}}" autofocus {% if visitor_p %}disabled{% endif %}/>
         </div>
 
-        <small>
-            About
+        <div class="form-group {{dClass}}">
+            <label for="name">Notebook's Description</label>
+            <textarea name="description" id="inputText" class="form-control" rows="10"{% if visior_p %} disabled{% endif %}>{{n_description}}</textarea>
+        </div>
+
+        <b>Notebook Visiblity</b>
+        <br>
+        <small class="text-muted">
+            <span class="fa fa-info-circle"></span> About
             <a href="https://en.wikipedia.org/wiki/Open_Notebook_Science" target="_blank">
-                open notebooks in science <span class="fa fa-external-link"></span>
+                open notebooks in science</span>
             </a>
+            <!--
+            Bad link:
+
             and
             <a href="https://onsclaims.wikispaces.com/" target="_blank">
                 this set of icons <span class="fa fa-external-link"></span>
             </a>
+            -->
         </small>
+
+        <hr style="margin: 10px 0;">
 
         <div class="radio">
             <label>
                 <input type="radio" name="claims" value="ONS-ACI" {% if n_claims == "ONS-ACI" %}checked{% endif %}/>
-                <img src="/static/ONS/ONS-ACI-icons.png" />
-                <strong>Open notebook:</strong> All content is reported as close to real time as possible.
+                Open notebook
+                <br>
+                <span class="text-muted">
+                    Publicly visible; All content is reported as close to real time as possible.
+                </span>
             </label>
         </div>
 
         <div class="radio">
             <label>
                 <input type="radio" name="claims" value="ONS-ACD" {% if n_claims == "ONS-ACD" %}checked{% endif %}/>
-                <img src="/static/ONS/ONS-ACD-icons.png" />
-                <strong>Open notebook:</strong> All content is reported but with a significant delay.
+                Open notebook
+                <br>
+                <span class="text-muted">
+                    Publicly visible; All content is reported but with a significant delay.
+                </span>
             </label>
         </div>
 
         <div class="radio">
             <label>
                 <input type="radio" name="claims" value="ONS-SCI" {% if n_claims == "ONS-SCI" %}checked{% endif %}/>
-                <img src="/static/ONS/ONS-SCI-icons.png" />
-                <strong>Open notebook:</strong> Only some selected content is reported as close to real time as possible.
+                Open notebook
+                <br>
+                <span class="text-muted">
+                    Publicly visible; Only some selected content is reported as close to real time as possible.
+                </span>
             </label>
         </div>
 
         <div class="radio">
             <label>
                 <input type="radio" name="claims" value="ONS-SCD" {% if n_claims == "ONS-SCD" %}checked{% endif %}/>
-                <img src="/static/ONS/ONS-SCD-icons.png" />
-                <strong>Open notebook:</strong> Only some selected content is reported and with a significant delay.
+                Open notebook
+                <br>
+                <span class="text-muted">
+                    Publicly visible; Only some selected content is reported and with a significant delay.
+                </span>
             </label>
         </div>
 
         <div class="radio">
             <label>
                 <input type="radio" name="claims" value="CNS" {% if n_claims == "CNS" %}checked{% endif %}/>
-                <span class="glyphicon glyphicon-eye-close"></span>
-                <strong>Closed notebook:</strong> Only members of this project will be able to see the content.
+                Closed notebook
+                <br>
+                <span class="text-muted">
+                    Only members of this project will be able to see the content.
+                </span>
             </label>
         </div>
 
-        {% if action=="Edit" %}
-            <!-- What if it isn't a shared notebook? O.o -->
-            <!-- TODO: fix this bug -->
-            <strong>This is a shared notebook</strong><br/><br/>
-        {% else %}
-            <div class="checkbox">
-                <br/>
+        <hr style="margin: 10px 0;">
+
+        {% if not action=="Edit" %}
+            <div class="form-group checkbox">
                 <label>
-                    <input type="checkbox" name="shared_p" value="True" {% if shared_p %}checked{% endif %}/>
-                    <strong>Shared notebook?</strong> If checked, every author in this project can write in the notebook.
+                    <input type="checkbox" name="shared_p" value="True" checked/>
+                    <strong>Shared Notebook?</strong>
+                    <br>
+                    <span class="text-muted">
+                        If checked, every author in this project can write in the notebook.
+                    </span>
                 </label>
             </div>
         {% endif %}
 
-        <button type="submit" class="btn btn-success" {% if visitor_p %}disabled="disabled"{% endif %}>{{button_text}}</button>
-        <button type="button" class="btn btn-default" onClick="if (confirm('Are you sure you want to cancel?')) {window.location = '/{{project.key.integer_id()}}/notebooks'}">Cancel</button>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" {% if visitor_p %}disabled="disabled"{% endif %}>{{button_text}}</button>
+        </div>
 
         {% if error_message %}
             <div class="alert alert-danger alert-dismissable" style="margin-top:5px;">
