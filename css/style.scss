@@ -1,4 +1,5 @@
 @import 'constants';
+@import 'helpers';
 @import 'md-editor';
 
 
@@ -8,6 +9,7 @@
 	 * Abstract style for text that normally possess a blue color that changes to a lighter blue on mouse hover/click
 	 */
 	color: $complement-color--prime;
+	@include transition(color 0.8s);
 
 	&:hover, &:focus, &:active {
 		color: $complement-color--second;
@@ -19,9 +21,10 @@
 	 * Like .link, but posssess grey text that changes to black on mouse hover/click
 	 */
 	color: $dark-color--second;
+	@include transition(color 0.8s);
 
 	&:hover, &:focus, &:active {
-		color: $complement-color--second;
+		color: $dark-color--prime;
 	}
 }
 
@@ -67,13 +70,14 @@ a {
 .btn {
 	background: none;
 	color: $base-color--prime;
-	border-color: $base-color--prime;
+	border-color: $base-color--prime !important;
 	border-radius: 0;
 	font-weight: normal;
+	@include transition(background 0.7s);
 
 	&:hover, &:active, &:focus {
-		background: $base-color--prime;
-		color: $light-color--prime;
+		background: $light-color--second;
+		color: $base-color--prime;
 	}
 }
 
@@ -84,6 +88,7 @@ textarea {
 .form-control {
 	border-radius: 0;
 	box-shadow: none !important;
+	@include transition(border-color 0.7s);
 
 	&:focus {
 		border-color: $base-color--prime;
@@ -117,7 +122,11 @@ html, body {
 
 	.parent-link {
 		font-size: 0.5em;
-		color: #f00;
+		color: $dark-color--second;
+
+		a {
+			text-decoration: none !important;
+		}
 	}
 
 	.actions {

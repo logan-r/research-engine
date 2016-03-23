@@ -109,7 +109,11 @@
   /**
    * Abstract style for text that normally possess a blue color that changes to a lighter blue on mouse hover/click
    */
-  color: #3F4E72; }
+  color: #3F4E72;
+  -webkit-transition: color 0.8s;
+  -moz-transition: color 0.8s;
+  -ms-transition: color 0.8s;
+  transition: color 0.8s; }
   .link:hover, a:hover, .link:focus, a:focus, .link:active, a:active {
     color: #337AB7; }
 
@@ -117,9 +121,13 @@
   /**
    * Like .link, but posssess grey text that changes to black on mouse hover/click
    */
-  color: #777777; }
+  color: #777777;
+  -webkit-transition: color 0.8s;
+  -moz-transition: color 0.8s;
+  -ms-transition: color 0.8s;
+  transition: color 0.8s; }
   .dark-link:hover, .project-tab-header .actions a:hover, .project-tab-actions a:hover:not(.unstyled), .dark-link:focus, .project-tab-header .actions a:focus, .project-tab-actions a:focus:not(.unstyled), .dark-link:active, .project-tab-header .actions a:active, .project-tab-actions a:active:not(.unstyled) {
-    color: #337AB7; }
+    color: #333333; }
 
 .header, h1, h2, h3, h4, h5, h6 {
   /** Uses header font **/
@@ -150,19 +158,27 @@ a {
 .btn {
   background: none;
   color: #506C6A;
-  border-color: #506C6A;
+  border-color: #506C6A !important;
   border-radius: 0;
-  font-weight: normal; }
+  font-weight: normal;
+  -webkit-transition: background 0.7s;
+  -moz-transition: background 0.7s;
+  -ms-transition: background 0.7s;
+  transition: background 0.7s; }
   .btn:hover, .btn:active, .btn:focus {
-    background: #506C6A;
-    color: #FFFFFF; }
+    background: #EEEEEE;
+    color: #506C6A; }
 
 textarea {
   resize: vertical; }
 
 .form-control {
   border-radius: 0;
-  box-shadow: none !important; }
+  box-shadow: none !important;
+  -webkit-transition: border-color 0.7s;
+  -moz-transition: border-color 0.7s;
+  -ms-transition: border-color 0.7s;
+  transition: border-color 0.7s; }
   .form-control:focus {
     border-color: #506C6A; }
 
@@ -186,7 +202,9 @@ html, body {
   border-bottom: 1px solid #EEEEEE; }
   .project-tab-header .parent-link {
     font-size: 0.5em;
-    color: #f00; }
+    color: #777777; }
+    .project-tab-header .parent-link a {
+      text-decoration: none !important; }
   .project-tab-header .actions {
     float: right;
     font-size: 0.8em;
