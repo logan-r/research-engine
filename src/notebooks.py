@@ -251,10 +251,11 @@ class NewNotePage(NotebookPage):
                 "title" : "New note",
                 "parent_link_text": notebook.name,
                 "parent_link_url": parent_url,
-                "name_title" : "Note's Title",
-                "content_title" : "Note's Content",
+                "name_title" : "Note Title",
+                "content_title" : "Note Content",
                 "name_value" : "",
-                "content_value" : ""
+                "content_value" : "",
+                "submit_button_text": "Create note"
               }
         self.render("project_name_description_form.html", project = project, **kw)
 
@@ -440,7 +441,7 @@ class EditNotebookPage(NotebookPage):
         if have_error:
             nbs_url = "/%s/notebooks" % (projectid)
             kw = {"action" : "Edit",
-                  "button_text" : "Save Changes",
+                  "button_text" : "Save notebook",
                   "n_name" : n_name,
                   "n_description" : n_description,
                   "n_claims" : n_claims,
@@ -486,10 +487,11 @@ class EditNotePage(NotebookPage):
             "title" : "Edit note",
             "parent_link_text": notebook.name,
             "parent_link_url": nb_url,
-            "name_title" : "Note's Title",
+            "name_title" : "Note Title",
             "name_value" : note.title,
-            "content_title" : "Note's Content",
-            "content_value" : note.content
+            "content_title" : "Note Content",
+            "content_value" : note.content,
+            "submit_button_text": "Save note"
         }
         self.render("project_name_description_form.html", project = project, **kw)
 

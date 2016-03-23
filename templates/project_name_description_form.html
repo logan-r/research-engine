@@ -18,7 +18,7 @@
         <a href="#project-menu" class="skiptocontent">Skip to project menu</a>
 
         <div class="actions">
-            <a onclick="$('#project-name-description-form').submit();" href="#">
+            <a onclick="$('#project-name-description-form').submit();" title="{{submit_button_text}}">
                 <span class="fa fa-floppy-o"></span>
             </a>
         </div>
@@ -33,15 +33,18 @@
         </div>
     {% endif %}
 
-    <form method="post" role="form" id="project-name-description-form" class="vertical-form">
-        <div class="form-group {{nClass}}">
-            <label for="name">{{name_title}}</label>
+    <form method="post" role="form" id="project-name-description-form" class="content-body content-body-form">
+        <section class="form-group {{nClass}} content-section">
+            <label for="name" class="title">{{name_title}}</label>
             <input type="text" id="name" name="name" class="form-control input-lg" value="{{name_value}}" autofocus {% if disabled_p %}disabled{% endif %}/>
-        </div>
-        <div class="form-group {{cClass}}">
-            <label for="md-editor-{{title | safe | nowhitespace}}">{{content_title}}</label>
+        </section>
+        <section class="form-group {{cClass}} content-section">
+            <label for="md-editor-{{title | safe | nowhitespace}}" class="title">{{content_title}}</label>
             <textarea id='md-editor-{{title | safe | nowhitespace}}' name="content" class="md-editor" {% if disabled_p %}disabled{% endif %}>{{content_value}}</textarea>
-        </div>
+        </section>
+        <section class="form-group content-section">
+            <button type="submit" class="btn btn-success" {% if visitor_p %}disabled="disabled"{% endif %}>{{submit_button_text}}</button>
+        </section>
     </form>
 
     {% include "md_editor_setup.html" %}

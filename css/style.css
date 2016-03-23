@@ -32,11 +32,11 @@
 
 /** Typography **/
 * {
-  font-family: Roboto, sans-serif;
+  font-family: "Open Sans", sans-serif;
   outline: none !important; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Raleway, sans-serif; }
+  font-family: "Open Sans", sans-serif; }
 
 /** Page Structure **/
 html, body {
@@ -50,6 +50,26 @@ html, body {
 #page-content {
   flex: 1 0 auto;
   margin-bottom: 60px; }
+
+/* New layout - TODO: update everything to this structure */
+.content-body .content-section {
+  margin-top: 48px; }
+  .content-body .content-section:first-child {
+    margin-top: 24px; }
+  .content-body .content-section .title {
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.85em;
+    line-height: 0.85em;
+    text-transform: uppercase;
+    margin-left: 0;
+    color: #506C6A;
+    font-weight: bold; }
+.content-body.content-body-form .content-section {
+  margin-top: 28px; }
+  .content-body.content-body-form .content-section:first-child {
+    margin-top: 16px; }
+  .content-body.content-body-form .content-section .title {
+    line-height: initial; }
 
 /** Basic Element & Form Controls Stylings **/
 a {
@@ -279,7 +299,7 @@ a {
     font-family: "Titillium Web", sans-serif;
     color: #eee; }
   .navbar a {
-    font-family: Raleway, sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-weight: normal;
     color: #ddd !important; }
   .navbar a:hover {
@@ -298,7 +318,7 @@ a {
   .page-intro .title {
     font-family: "Titillium Web", sans-serif; }
   .page-intro .sub-title {
-    font-family: Raleway, sans-serif;
+    font-family: "Open Sans", sans-serif;
     color: #light-muted-font-color; }
   .page-intro .icon-btn {
     cursor: pointer; }
@@ -426,6 +446,9 @@ a {
   min-width: unset;
   margin-left: 2em; }
 
+.editor-statusbar {
+  padding-bottom: 0; }
+
 /** Special Unique Elements **/
 #overview {
   border-bottom: 5px solid #556666;
@@ -447,7 +470,7 @@ a {
   margin-bottom: 10px; }
 
 #features h2 {
-  font-family: Raleway;
+  font-family: "Open Sans", sans-serif;
   font-size: 1.8em;
   color: #484D5A; }
 

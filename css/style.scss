@@ -3,10 +3,13 @@
  * Main color scheme: http://paletton.com/#uid=73i0u0kg0ll7luZbPpCjKhjotdt
  */
 
-$body-font: Roboto, sans-serif;
-$header-font: Raleway, sans-serif;
+$body-font: 'Open Sans', sans-serif;
+$header-font: 'Open Sans', sans-serif;
 $logo-font: 'Titillium Web', sans-serif;
 $code-font: 'Roboto Mono', Consolas, monospace;
+
+$primary-color: #506C6A;
+
 
 $light-font-color: #EEEEEE;
 $light-muted-font-color: #CCCCCC;
@@ -111,6 +114,40 @@ html, body {
 	margin-bottom: 60px;
 }
 
+/* New layout - TODO: update everything to this structure */
+.content-body {
+	.content-section {
+		margin-top: 48px;
+
+		&:first-child {
+			margin-top: 24px;
+		}
+
+		.title {
+			font-family: $header-font;
+			font-size: 0.85em;
+			line-height: 0.85em;
+			text-transform: uppercase;
+			margin-left: 0;
+			color: $primary-color;
+			font-weight: bold;
+		}
+	}
+
+	&.content-body-form {
+		.content-section {
+			margin-top: 28px;
+
+			&:first-child {
+				margin-top: 16px;
+			}
+
+			.title {
+				line-height: initial;
+			}
+		}
+	}
+}
 
 /** Basic Element & Form Controls Stylings **/
 
@@ -465,7 +502,7 @@ a {
 	}
 
 	.sub-title {
-		font-family: Raleway, sans-serif;
+		font-family: $header-font;
 		color: #light-muted-font-color;
 	}
 
@@ -637,6 +674,10 @@ a {
 	margin-left: 2em;
 }
 
+.editor-statusbar {
+	padding-bottom: 0;
+}
+
 
 /** Special Unique Elements **/
 
@@ -666,7 +707,7 @@ a {
 }
 
 #features h2 {
-	font-family: Raleway;
+	font-family: $header-font;
 	font-size: 1.8em;
 	color: $header-dark-blue;
 }
