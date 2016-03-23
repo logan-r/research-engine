@@ -34,6 +34,7 @@ routes = [
     Route('/logout', handler='src.users.AuthHandler:logout', name='logout'),
     # Cron jobs
     Route('/cron/send_email_notifications', 'src.email_messages.SendNotifications'),
+    Route('/cron/send_group_biblio_notifications', 'src.groups.SendBiblioNotifications'),
     ##
     #  Projects
     ##
@@ -102,6 +103,16 @@ routes = [
     Route('/file/<blobkey:.+>', 'src.datasets.DownloadDataRevisionHandler'),
     
     Route('/<projectid:[0-9]+>', 'src.frontend.OverviewPage'),
+    # Groups
+    Route('/new_group', 'src.groups.NewGroupPage'),
+    Route('/g/<groupid:[0-9]+>', 'src.groups.ViewGroupPage'),
+    Route('/g/<groupid:[0-9]+>/calendar/new', 'src.groups.CalendarNewTask'),
+    Route('/g/<groupid:[0-9]+>/calendar', 'src.groups.CalendarPage'),
+    Route('/g/<groupid:[0-9]+>/_edit_event/<eventid:[0-9]+>', 'src.groups.EditEvent'),
+    Route('/g/<groupid:[0-9]+>/admin', 'src.groups.AdminPage'),
+    Route('/g/<groupid:[0-9]+>/invited', 'src.groups.InvitedPage'),
+    Route('/g/<groupid:[0-9]+>/bibliography', 'src.groups.BiblioPage'),
+
     Route('/<username:.+>/outreach', 'src.outreach.MainPage'),
     Route('/<username:.+>/outreach/new_post', 'src.outreach.NewPostPage'),
     Route('/<username:.+>/outreach/<postid:[0-9]+>/edit', 'src.outreach.EditPostPage'),

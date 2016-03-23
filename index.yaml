@@ -27,6 +27,11 @@ indexes:
   - name: last_updated
     direction: desc
 
+- kind: CalendarEvents
+  ancestor: yes
+  properties:
+  - name: start_date
+
 - kind: CodeComments
   ancestor: yes
   properties:
@@ -82,6 +87,12 @@ indexes:
   ancestor: yes
   properties:
   - name: last_updated
+    direction: desc
+
+- kind: GroupUpdates
+  ancestor: yes
+  properties:
+  - name: date
     direction: desc
 
 - kind: Images

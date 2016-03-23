@@ -1,0 +1,57 @@
+{% extends "group_base.html" %}
+
+{% block g_content %}
+<!-- Help modal -->
+<div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Calendar</h4>
+      </div>
+      <div class="modal-body">
+	<p>Here you can add events and tasks with due dates for all the group to see</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 class="project-tab-header">
+  Calendar
+  <a href="#group-menu" class="skiptocontent">Skip to group menu</a>
+  <div class="actions">
+    <a href="#helpModal" data-toggle="modal">
+      <span class="fa fa-question-circle"></span>
+    </a>
+  </div>
+</h2>
+
+<div class="project-tab-actions">
+  <a href="/g/{{group.key.integer_id()}}/calendar/new">
+    New event
+  </a>
+</div>
+
+{% if events %}
+
+<div class="events-wrapper">
+  {% for event in events %}
+  <div class="row events-row">
+    <div class="col-sm-2"><span class="event-date">{{event.start_date.strftime("%d %b %Y %H:%M (%A)")}}</span></div>
+    <div class="col-sm-8">{{event.description | md | safe}}</div>
+    <div class="col-sm-2">
+      <img src="{{event.author.get().get_profile_image(20)}}" width="20" aria-hidden="true"/>
+      {{event.author.get().username.capitalize()}}
+      <a class="btn-muted pull-right"
+	 href="/g/{{group.key.integer_id()}}/_edit_event/{{event.key.integer_id()}}">
+        <span class="fa fa-pencil"></span>
+      </a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+
+{% endif %}
+
+{% endblock %}
