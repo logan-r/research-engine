@@ -22,7 +22,7 @@
         <a href="#project-menu" class="skiptocontent">Skip to project menu</a>
 
         <div class="actions">
-            <a onclick="$('#new-notebook-form').submit();" title="submit_button_text">
+            <a onclick="$('#new-notebook-form').submit();" title="{{submit_button_text}}">
                 <span class="fa fa-floppy-o"></span>
             </a>
         </div>
@@ -30,12 +30,12 @@
 
     <form method="post" role="form" id="new-notebook-form" class="content-body content-body-form">
         <section class="form-group {{nClass}} content-section">
-            <label for="name" class="title">Notebook's Title</label>
+            <label for="name" class="title">Notebook Title</label>
             <input type="text" name="name" class="form-control input-lg" value="{{n_name}}" autofocus {% if visitor_p %}disabled{% endif %}/>
         </section>
 
         <section class="form-group {{dClass}} content-section">
-            <label for="name" class="title">Notebook's Description</label>
+            <label for="name" class="title">Notebook Description</label>
             <textarea name="description" id="inputText" class="form-control" rows="10"{% if visior_p %} disabled{% endif %}>{{n_description}}</textarea>
         </section>
 

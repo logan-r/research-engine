@@ -1,0 +1,123 @@
+@import 'constants';
+
+.editor-toolbar {
+	border-radius: 0;
+	border-color: #ccc;
+	opacity: 1 !important;
+
+	/* Alight help and preview buttons to the right edge of the toolbar */
+	.fa-question-circle {
+		float: right;
+		color: #f00;
+	}
+}
+
+.editor-toolbar > a {
+	color: $complement-color--prime !important;
+	padding-bottom: 28px;
+}
+
+.editor-toolbar:hover > a {
+	color: $complement-color--second !important;
+}
+
+.editor-toolbar > a:hover, .editor-toolbar > a.active {
+	border-radius: 0;
+	border-color: #aaa;
+}
+
+.editor-toolbar .popover {
+	top: 38px !important;
+	border-radius: 0;
+	text-align: center;
+	border-color: #ccc;
+}
+
+.editor-toolbar .popover .arrow {
+	border-bottom-color: #a3a3a3;
+}
+
+.editor-toolbar .popover .popover-title {
+	background: #fff;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom-color: #ddd;
+	margin-left: -1px;
+	margin-right: -1px;
+}
+
+.editor-toolbar .popover .popover-content {
+	padding-right: 0;
+	padding-left: 0;
+	padding-bottom: 0;
+	margin-left: -1px;
+	margin-right: -1px;
+}
+
+.editor-toolbar .popover .popover-tabs {
+	margin-top: -9px;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 14px;
+	padding-left: 14px;
+	padding-right: 14px;
+
+	button {
+		font-weight: bold;
+		color: #777;
+		padding-top: 6px;
+		padding-bottom: 6px;
+		padding-left: 9px;
+		padding-right: 9px;
+	}
+
+	button:hover, button:focus {
+		color: $base-color--prime;
+		text-decoration: none;
+		border-radius: 0;
+	}
+
+	button.active {
+		color: $base-color--prime;
+		text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+	}
+}
+
+.editor-toolbar .popover .popover-content .popover-body {
+	padding-left: 14px;
+	padding-right: 14px;
+	padding-bottom: 9px;
+
+	.btn-insert {
+		margin-top: 10px;
+		padding: 0;
+		padding-right: 2px;
+		width: 100%;
+		height: auto;
+		font-weight: bold;
+		color: #777 !important;
+		border: none !important;
+		text-align: right;
+	}
+
+	.btn-insert:hover {
+		color: #333 !important;
+	}
+}
+
+.CodeMirror {
+	border-radius: 0;
+	border-color: #ccc;
+}
+
+.CodeMirror, .CodeMirror-scroll {
+    min-height: 190px;
+}
+
+.editor-statusbar span {
+	min-width: unset;
+	margin-left: 2em;
+}
+
+.editor-statusbar {
+	padding-bottom: 0;
+}

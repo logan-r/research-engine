@@ -1,120 +1,164 @@
-/**
- * Header color scheme: http://paletton.com/#uid=73i0u0k5lll1Iwb3uq77ogW9yaY
- * Main color scheme: http://paletton.com/#uid=73i0u0kg0ll7luZbPpCjKhjotdt
- */
-
-$body-font: 'Open Sans', sans-serif;
-$header-font: 'Open Sans', sans-serif;
-$logo-font: 'Titillium Web', sans-serif;
-$code-font: 'Roboto Mono', Consolas, monospace;
-
-$primary-color: #506C6A;
+@import 'constants';
+@import 'md-editor';
 
 
-$light-font-color: #EEEEEE;
-$light-muted-font-color: #CCCCCC;
-$dark-font-color: #333;
-$dark-muted-font-color: #777;
+/** ABSTRACT STYLES - should not be used directly in .html (should only be inherited by other .scss styles) */
+.link {
+	/**
+	 * Abstract style for text that normally possess a blue color that changes to a lighter blue on mouse hover/click
+	 */
+	color: $complement-color--prime;
 
-$green: #336666;
-$dark-green: #205353;
-$very-dark-green: #0F4040;
-$blue: #3F4E72;
-$light-blue: #5C6989;
-$dark-blue: #29395C;
-$very-dark-blue: #172648;
-$blue-transparent: rgba(63, 78, 114, .3);
-$dark-blue-transparent: rgba(41, 57, 92, .3);
-$brown: #AA8E55;
-$orange: #AA7C55;
-$dark-orange: #8A5B35;
-$very-light-grey: #EEEEEE;
-$light-grey: #CCCCCC;
-
-$header-green: #556666;
-$header-very-light-green: #919A9A;
-$header-light-green: #6F7D7D;
-$header-blue: #616672;
-$header-very-light-blue: #A3A6AB;
-$header-light-blue: #7E828B;
-$header-dark-blue: #484D5A;
-$header-very-dark-blue: #2B303A;
-$header-brown: #AAA18E;
-$header-orange: #AA9B8E;
-$header-light-grey: #CCCCCC;
-$header-green-transparent: rgba(85, 102, 102, .3);
-$header-blue-transparent: rgba(97, 102, 114, .3);
-$header-dark-grey-transparent: rgba(51, 51, 51, .5);
-
-$light-border: 1px solid;
-$medium-border: 5px solid;
-$heavy-border: 10px solid;
-
-
-/** Code **/
-.codehilitetable > tbody > tr > td {
-	/* Override md-editor's default table padding and border */
-	border: none !important;
-	padding: 0 !important;
+	&:hover, &:focus, &:active {
+		color: $complement-color--second;
+	}
 }
 
-.codehilite, .linenodiv {
-	margin-top: 10px;
-	margin-bottom: 10px;
+.dark-link {
+	/**
+	 * Like .link, but posssess grey text that changes to black on mouse hover/click
+	 */
+	color: $dark-color--second;
+
+	&:hover, &:focus, &:active {
+		color: $complement-color--second;
+	}
 }
 
-.codehilite pre {
-	padding: 16px;
+.header {
+	/** Uses header font **/
+	font-family: $header-font;
 }
 
-.codehilite pre, .linenodiv pre {
-	border-radius: 0;
-	border: none;
-	font-family: $code-font;
-	margin-bottom: 0;
+.sub-header {
+	/** TODO **/
 }
 
-.linenodiv pre {
-	background: #e5e5e5;
-	color: #333;
-	padding-top: 16px;
-	padding-bottom: 16px;
-}
-
-.codehilite pre > span {
-	font-family: $code-font;
+.secondary-header {
+	/**
+	 * A header that exists below another, more important header
+	 */
+	font-size: 0.85em;
+	line-height: 0.85em;
+	text-transform: uppercase;
+	color: $base-color--prime;
+	font-weight: bold;
 }
 
 
-/** Typography **/
 
+/** TYPOGRAPHY **/
 * {
 	font-family: $body-font;
 	outline: none !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: $header-font;
+	@extend .header;
 }
 
 
-/** Page Structure **/
+/** BASIC ELEMENTS */
+a {
+	@extend .link;
+	font-weight: bold;
+}
+
+.btn {
+	background: none;
+	color: $base-color--prime;
+	border-color: $base-color--prime;
+	border-radius: 0;
+	font-weight: normal;
+
+	&:hover, &:active, &:focus {
+		background: $base-color--prime;
+		color: $light-color--prime;
+	}
+}
+
+textarea {
+	resize: vertical;
+}
+
+.form-control {
+	border-radius: 0;
+	box-shadow: none !important;
+
+	&:focus {
+		border-color: $base-color--prime;
+	}
+}
+
+
+/** PAGE STRUCTURE **/
 html, body {
+	/* Insure that everything is sized correctly */
 	height: 100%;
+
+	#wrap {
+		display: flex;
+		flex-flow: column;
+		height: 100%;
+
+		#page-content {
+			flex: 1 0 auto;
+			margin-bottom: 60px;
+		}
+	}
 }
 
-#wrap {
-	display: flex;
-	flex-flow: column;
-	height: 100%;
+/** TODO: refactor **/
+.project-tab-header {
+	margin: 0;
+	padding-top: 12px;
+	padding-bottom: 16px;
+	border-bottom: 1px solid $light-color--second;
+
+	.parent-link {
+		font-size: 0.5em;
+		color: #f00;
+	}
+
+	.actions {
+		float: right;
+		font-size: 0.8em;
+		margin-top: 4px;
+
+		a {
+			@extend .dark-link;
+			margin-left: 15px;
+		}
+	}
 }
 
-#page-content {
-	flex: 1 0 auto;
-	margin-bottom: 60px;
+.project-tab-header.no-action-bar {
+	margin-bottom: 16px;
 }
 
-/* New layout - TODO: update everything to this structure */
+.project-tab-actions {
+	border-bottom: 1px solid $light-color--second;
+	margin-bottom: 20px;
+	padding-top: 14px;
+	padding-bottom: 14px;
+
+	a:not(.unstyled) {
+		@extend .dark-link;
+		margin-left: 15px;
+		text-decoration: none;
+
+		&.active {
+			color: $base-color--prime !important;
+			text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+		}
+	}
+
+	*.pull-right a:not(.unstyled), a:not(.unstyled).pull-right {
+		margin-left: 0;
+		margin-right: 15px;
+	}
+}
+
 .content-body {
 	.content-section {
 		margin-top: 48px;
@@ -124,13 +168,7 @@ html, body {
 		}
 
 		.title {
-			font-family: $header-font;
-			font-size: 0.85em;
-			line-height: 0.85em;
-			text-transform: uppercase;
-			margin-left: 0;
-			color: $primary-color;
-			font-weight: bold;
+			@extend .secondary-header;
 		}
 	}
 
@@ -149,57 +187,12 @@ html, body {
 	}
 }
 
-/** Basic Element & Form Controls Stylings **/
 
-a {
-	color: $blue;
-	font-weight: bold;
-}
 
-a:hover, a:focus, a:active {
-	color: $dark-blue;
-}
 
-.btn:not(.btn-link) {
-	background: none;
-	color: $dark-green;
-	border-color: $dark-green !important;
-	border-radius: 0;
-	font-weight: normal;
-}
 
-.btn:not(.btn-link).btn-grey {
-	border-color: #836c4f !important;
-}
 
-.btn:not(.btn-link):hover, .btn:not(.btn-link):active, .btn:not(.btn-link):focus {
-	background: #e5e5e5;
-	color: $dark-green;
-}
-
-textarea {
-	resize: vertical;
-}
-
-.form-control {
-	border-radius: 0;
-	box-shadow: none !important;
-}
-
-.form-control:focus {
-	border-color: $dark-blue;
-}
-
-.vertical-form {
-	> .form-group:not(:first-child) {
-		margin-top: 24px;
-	}
-
-	> * > label {
-		margin-left: 2px;
-	}
-}
-
+/** OTHER STUFF **/
 .alert {
 	border-radius: 0;
 }
@@ -243,65 +236,6 @@ a {
 
 
 /** Project tab structuer **/
-
-.project-tab-header {
-	margin: 0;
-	padding-top: 12px;
-	padding-bottom: 16px;
-	border-bottom: $light-border #f0f0f0;
-
-	.parent-link {
-		font-size: 0.5em;
-		color: $dark-muted-font-color;
-	}
-
-	.actions {
-		float: right;
-		font-size: 0.8em;
-		margin-top: 4px;
-
-		a {
-			margin-left: 15px;
-			color: #777;
-		}
-
-		a:hover {
-			color: #333;
-		}
-	}
-}
-
-.project-tab-header.no-action-bar {
-	margin-bottom: 16px;
-}
-
-.project-tab-actions {
-	border-bottom: $light-border #f0f0f0;
-	margin-bottom: 20px;
-	padding-top: 14px;
-	padding-bottom: 14px;
-
-	a:not(.unstyled) {
-		color: #777;
-		margin-left: 15px;
-		text-decoration: none
-	}
-
-	a:not(.unstyled):hover {
-		color: #333;
-	}
-
-	a:not(.unstyled).active {
-		color: $dark-green !important;
-		text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
-	}
-
-	*.pull-right a:not(.unstyled), a:not(.unstyled).pull-right {
-		margin-left: 0;
-		margin-right: 15px;
-	}
-}
-
 .project-tab-list {
 	.panel {
 		border-radius: 0 !important;
@@ -336,7 +270,7 @@ a {
 	text-decoration: none !important;
 	font-weight: normal;
 	text-align: center;
-	color: $dark-font-color;
+	color: $dark-color--prime;
 	font-size: 0.9em;
 
 	padding: 10px 0;
@@ -352,7 +286,7 @@ a {
 }
 
 .icon-btn.active {
-	background: $very-light-grey;
+	background: $light-color--second;
 	color: #333 !important;
 }
 
@@ -465,17 +399,16 @@ a {
 
 	.navbar-brand {
 		font-family: $logo-font;
-		color: #eee;
 	}
 
 	a {
 		font-family: $header-font;
 		font-weight: normal;
-		color: #ddd !important;
+		color: $light-color--prime !important;
 	}
 
 	a:hover {
-		color: #fff !important;
+		color: $light-color--second !important;
 	}
 }
 
@@ -487,10 +420,10 @@ a {
 
 	margin-bottom: 0;
 
-	border-bottom: $medium-border $header-green;
+	border-bottom: 4px solid $base-color--prime;
 
 	* {
-		color: $light-font-color;
+		color: $light-color--second;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -503,7 +436,7 @@ a {
 
 	.sub-title {
 		font-family: $header-font;
-		color: #light-muted-font-color;
+		color: $light-color--third;
 	}
 
 	.icon-btn {
@@ -511,7 +444,7 @@ a {
 	}
 
 	.icon-btn:hover, .icon-btn:active, .icon-btn:focus {
-		color: $header-blue;
+		color: $complement-color--prime;
 	}
 
 
@@ -520,22 +453,22 @@ a {
 
 		.btn {
 			border-radius: 0;
-			font-family: Roboto, sans-serif;
-			border-color: $header-light-grey !important;
-			background: $header-green-transparent;
-			color: $light-font-color;
+			font-family: $body-font, sans-serif;
+			border-color: $light-color--third !important;
+			background: $base-color--prime;
+			color: $light-color--second;
 
 			margin-right: 3px;
 			margin-left: 3px;
 		}
 
 		.btn-grey {
-			background: $header-blue-transparent;
+			background: $complement-color--prime;
 		}
 
 		.btn:hover, .btn:active, .btn:focus {
-			background: $header-dark-grey-transparent;
-			color: $light-font-color;
+			background: $dark-color--second;
+			color: $light-color--second;
 		}
 	}
 }
@@ -555,134 +488,10 @@ a {
 }
 
 
-/** Markdown edtior **/
-.editor-toolbar {
-	border-radius: 0;
-	border-color: #ccc;
-	opacity: 1 !important;
-
-	/* Alight help and preview buttons to the right edge of the toolbar */
-	.fa-question-circle {
-		float: right;
-		color: #f00;
-	}
-}
-
-.editor-toolbar > a {
-	color: $light-blue !important;
-	padding-bottom: 28px;
-}
-
-.editor-toolbar:hover > a {
-	color: $dark-blue !important;
-}
-
-.editor-toolbar > a:hover, .editor-toolbar > a.active {
-	border-radius: 0;
-	border-color: #aaa;
-}
-
-.editor-toolbar .popover {
-	top: 38px !important;
-	border-radius: 0;
-	text-align: center;
-	border-color: #ccc;
-}
-
-.editor-toolbar .popover .arrow {
-	border-bottom-color: #a3a3a3;
-}
-
-.editor-toolbar .popover .popover-title {
-	background: #fff;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	border-bottom-color: #ddd;
-	margin-left: -1px;
-	margin-right: -1px;
-}
-
-.editor-toolbar .popover .popover-content {
-	padding-right: 0;
-	padding-left: 0;
-	padding-bottom: 0;
-	margin-left: -1px;
-	margin-right: -1px;
-}
-
-.editor-toolbar .popover .popover-tabs {
-	margin-top: -9px;
-	border-bottom: 1px solid #ddd;
-	margin-bottom: 14px;
-	padding-left: 14px;
-	padding-right: 14px;
-
-	button {
-		font-weight: bold;
-		color: #777;
-		padding-top: 6px;
-		padding-bottom: 6px;
-		padding-left: 9px;
-		padding-right: 9px;
-	}
-
-	button:hover, button:focus {
-		color: $dark-green;
-		text-decoration: none;
-		border-radius: 0;
-	}
-
-	button.active {
-		color: $green;
-		text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
-	}
-}
-
-.editor-toolbar .popover .popover-content .popover-body {
-	padding-left: 14px;
-	padding-right: 14px;
-	padding-bottom: 9px;
-
-	.btn-insert {
-		margin-top: 10px;
-		padding: 0;
-		padding-right: 2px;
-		width: 100%;
-		height: auto;
-		font-weight: bold;
-		color: #777 !important;
-		border: none !important;
-		text-align: right;
-	}
-
-	.btn-insert:hover {
-		color: #333 !important;
-	}
-}
-
-.CodeMirror {
-	border-radius: 0;
-	border-color: #ccc;
-}
-
-.CodeMirror, .CodeMirror-scroll {
-    min-height: 190px;
-}
-
-.editor-statusbar span {
-	min-width: unset;
-	margin-left: 2em;
-}
-
-.editor-statusbar {
-	padding-bottom: 0;
-}
-
-
 /** Special Unique Elements **/
 
 #overview {
-	border-bottom: $medium-border $header-green;
+	border-bottom: 4px solid $base-color--prime;
 	padding: 30px 0;
 
 	p {
@@ -691,7 +500,7 @@ a {
 }
 
 #features {
-	font-family: Roboto, sans-serif;
+	font-family: $body-font;
 	padding-top: 10px;
 	padding-bottom: 20px;
 	background: #f0f0f0;
@@ -709,7 +518,7 @@ a {
 #features h2 {
 	font-family: $header-font;
 	font-size: 1.8em;
-	color: $header-dark-blue;
+	color: $complement-color--prime;
 }
 
 #features h2 .fa-stack {
@@ -719,7 +528,7 @@ a {
 
 #project-nav {
 	padding: 8px 0;
-	border-right: $light-border $very-light-grey;
+	border-right: 1px solid $light-color--second;
 }
 
 .project-link {
@@ -770,10 +579,44 @@ a {
 }
 
 .collapse-toggle, .collapse-toggle:focus {
-	color: $dark-font-color;
+	color: $dark-color--prime;
 	text-decoration: none !important;
 }
 
 .collapse-toggle:hover, .collapse-toggle:active {
-	color: $dark-muted-font-color;
+	color: $dark-color--second;
+}
+
+/** Code **/
+.codehilitetable > tbody > tr > td {
+	/* Override md-editor's default table padding and border */
+	border: none !important;
+	padding: 0 !important;
+}
+
+.codehilite, .linenodiv {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.codehilite pre {
+	padding: 16px;
+}
+
+.codehilite pre, .linenodiv pre {
+	border-radius: 0;
+	border: none;
+	font-family: $code-font;
+	margin-bottom: 0;
+}
+
+.linenodiv pre {
+	background: #e5e5e5;
+	color: #333;
+	padding-top: 16px;
+	padding-bottom: 16px;
+}
+
+.codehilite pre > span {
+	font-family: $code-font;
 }

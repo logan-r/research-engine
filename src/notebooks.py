@@ -154,7 +154,7 @@ class NewNotebookPage(NotebookPage):
         if not project.user_is_author(user):
             self.redirect("/%s/notebooks" % projectid)
             return
-        self.render("notebook_new.html", project = project, action = "New", button_text = "Create notebook",
+        self.render("notebook_new.html", project = project, action = "New", submit_button_text = "Create notebook",
                     n_claims = "ONS-ACI" if project.default_open_p else "CNS")
 
     def post(self, projectid):
@@ -188,7 +188,7 @@ class NewNotebookPage(NotebookPage):
             have_error = True
             error_message += "There was an error procesing your request, please try again."
         if have_error:
-            self.render("notebook_new.html", project = project, action = "New", button_text = "Create notebook", **kw)
+            self.render("notebook_new.html", project = project, action = "New", submit_button_text = "Create notebook", **kw)
         else:
             new_notebook = Notebooks(owner = user.key,
                                      name = kw["n_name"],
@@ -399,7 +399,7 @@ class EditNotebookPage(NotebookPage):
             self.redirect("/%s/notebooks/%s" % (projectid, nbid))
             return
         kw = {"action" : "Edit",
-              "button_text" : "Save Changes",
+              "submit_button_text" : "Save notebook",
               "n_name" : notebook.name,
               "n_description" : notebook.description,
               "n_claims" : notebook.claims,
@@ -441,7 +441,7 @@ class EditNotebookPage(NotebookPage):
         if have_error:
             nbs_url = "/%s/notebooks" % (projectid)
             kw = {"action" : "Edit",
-                  "button_text" : "Save notebook",
+                  "submit_button_text" : "Save notebook",
                   "n_name" : n_name,
                   "n_description" : n_description,
                   "n_claims" : n_claims,
