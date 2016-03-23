@@ -23,7 +23,7 @@ jinja_env.filters['nowhitespace'] = filters.noWhitespace
 
 # You should change these if you are registering your own app on App Engine
 APP_NAME = "Research Engine"
-APP_VERSION = "1.4.0"
+APP_VERSION = "1.5.2"
 APP_URL = "https://research-engine.appspot.com"
 ADMIN_EMAIL = "admin@research-engine.appspotmail.com"
 APP_REPO = "https://github.com/andresgsaravia/research-engine"
@@ -76,6 +76,7 @@ class RegisteredUsers(ndb.Model):
     email = ndb.StringProperty(required = False)
     about_me = ndb.TextProperty(required = False)
     my_projects = ndb.KeyProperty(repeated = True)                   # keys to Projects (defined in projects.py)
+    my_groups = ndb.KeyProperty(repeated = True)                     # keys to Groups (defined in groups.py)
     profile_image_url = ndb.StringProperty(required = False)
     gplusid = ndb.StringProperty(required = False)
     gplus_profile_json = ndb.JsonProperty(required = False)
@@ -92,6 +93,19 @@ class RegisteredUsers(ndb.Model):
         if len(projects_list) > 0:
             projects_list.sort(key=lambda p: p.last_updated, reverse=True)
         return projects_list
+
+    def list_of_groups(self):
+        groups_list = []
+        for g_key in self.my_groups:
+            group = g_key.get()
+            if group:
+                groups_list.append(group)
+            else:
+                logging.warning("RegisteredUser with key (%s) contains a broken reference to group %s"
+                                % (self.key, g_key))
+        if len(groups_list) > 0:
+            groups_list.sort(key=lambda g: g.last_updated, reverse=True)
+        return groups_list
 
     def set_gplus_profile(self):
         assert self.gplusid
@@ -257,7 +271,9 @@ class GenericPage(webapp2.RequestHandler):
         kw["APP_REPO"] = APP_REPO
         kw["GOOGLE_PLUS_PAGE"] = GOOGLE_PLUS_PAGE
         kw['user'] = self.get_login_user()
-        if kw["user"]: kw["list_of_projects"] = kw["user"].list_of_projects()
+        if kw["user"]:
+            kw["list_of_projects"] = kw["user"].list_of_projects()
+            kw["list_of_groups"]   = kw["user"].list_of_groups()
         self.write(self.render_str(template, **kw))
 
     # for simpleauth

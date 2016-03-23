@@ -79,6 +79,54 @@ def send_invitation_to_project(project, inviting, invited, message):
     message.send()
     return
 
+def send_invitation_to_group(group, inviting, invited):
+    h = generic.hash_str(invited.salt + str(group.key))
+    kw = {"group" : group,
+          "inviting" : inviting,
+          "invited" : invited,
+          "APP_URL" : generic.APP_URL,
+          "accept_link" : "%s/g/%s/invited?h=%s" % (generic.APP_URL, group.key.integer_id(), h)}
+    message = mail.EmailMessage(sender = PRETTY_ADMIN_EMAIL,
+                                to = invited.email,
+                                subject = "%s has invited you to be a member of the group %s" % (inviting.username.capitalize(), group.name),
+                                body = generic.render_str("emails/invite_to_group.txt" , **kw),
+                                html = generic.render_str("emails/invite_to_group.html", **kw))
+    logging.debug("EMAIL: Sending an email with a invitation to a group from user %s to user %s" % (inviting.username, invited.username))
+    message.send()
+    return
+
+def send_new_calendar_event_notification(user, author, group, event, update):
+    kw = {"user"    : user,
+          "author"  : author,
+          "group"   : group,
+          "event"   : event,
+          "APP_URL" : generic.APP_URL,
+          "update"  : update,
+          "subject" : "An event has changed in your group " if update else "New event in your group "}
+    kw["subject"] = kw["subject"] + group.name
+    message = mail.EmailMessage(sender  = PRETTY_ADMIN_EMAIL,
+                                to      = user.email,
+                                subject = kw["subject"],
+                                body    = generic.render_str("emails/group_event_notification.txt", **kw),
+                                html    = generic.render_str("emails/group_event_notification.html", **kw))
+    logging.debug("EMAIL: Sending an email with an event notification to user %s" % user.username)
+    message.send()
+    return
+
+def send_group_biblio_notification(group, user, bibitems):
+    kw = {"group"    : group,
+          "user"     : user,
+          "bibitems" : bibitems,
+          "APP_URL"  : generic.APP_URL}
+    message = mail.EmailMessage(sender  = PRETTY_ADMIN_EMAIL,
+                                to      = user.email,
+                                subject = "Weekly bibliography review for %s" % group.name,
+                                body    = generic.render_str("emails/group_biblio_notification.txt", **kw),
+                                html    = generic.render_str("emails/group_biblio_notification.html", **kw))
+    logging.debug("EMAIL: Sending an email with an event notification to user %s" % user.username)
+    message.send()
+    return
+
 ###
 ### Beware!! Uglyness below! 
 ###
