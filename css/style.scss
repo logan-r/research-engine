@@ -65,8 +65,9 @@
 	text-transform: uppercase;
 	color: $base-color--prime;
 	font-weight: bold;
-}
+	padding-left: $spacing-xxs;
 
+}
 
 
 /** TYPOGRAPHY **/
@@ -179,10 +180,10 @@ html, body {
 
 .content-body {
 	.content-section {
-		margin-top: 48px;
+		margin-top: $spacing-xxl + $spacing-md;
 
 		&:first-child {
-			margin-top: 24px;
+			margin-top: $spacing-xl + $spacing-sm;
 		}
 
 		.title {
@@ -272,8 +273,8 @@ html, body {
 	 *      the created date, author, # of comments, etc. along with a comment button
 	 */
 	font-size: 0.9em;
-	margin: $spacing-xxs;
-	margin-top: 0;
+	margin-bottom: $spacing-xxs;
+	padding: 0 $spacing-xxs;
 
 	.info-blurb {
 		color: $dark-color--second;

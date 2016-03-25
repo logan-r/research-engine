@@ -42,11 +42,11 @@
             <section class="content-section">
                 <h3 class="title">My notebooks</h3>
 
-                <div class="block-list block-list-accordian" id="myaccordion">
+                <div class="block-list block-list-accordian" id="my-notebooks-accordion">
                     {% for n in my_notebooks %}
                         <div class="list-item">
                             <div class="list-item-heading">
-                                <span class="list-item-action" data-toggle="collapse" data-parent="#myaccordion" href="#{{n.key.integer_id()}}">
+                                <span class="list-item-action list-item-accordion-toggle" data-toggle="collapse" data-parent="#my-notebooks-accordio" href="#{{n.key.integer_id()}}">
                                     <span class="fa fa-chevron-down"></span>
                                     <span class="fa fa-chevron-up" hidden></span>
                                 </span>
@@ -89,7 +89,7 @@
                                             {% endif %}
                                         </span>
 
-                                        <a class="pull-right">
+                                        <a class="pull-right" href="/{{project.key.integer_id()}}/notebooks/{{n.key.integer_id()}}">
                                             Read &amp; edit notebook &raquo;
                                         </a>
                                     </div>
@@ -334,7 +334,7 @@
 
 <!-- Accordion open/close animation -->
 <script>
-    $(".accordion-toggle").click(function() {
+    $(".list-item-accordion-toggle").click(function() {
         if (!$(this).children(".fa-chevron-down").is(":hidden")) {
             $(this).closest(".panel-group").find(".fa-chevron-down").each(function() {
                 $(this).show();
