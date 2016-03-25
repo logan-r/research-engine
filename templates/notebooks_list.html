@@ -52,13 +52,6 @@
                                 </span>
 
                                 <a href="/{{project.key.integer_id()}}/notebooks/{{n.key.integer_id()}}" class="list-item-heading-title">
-                                    <!--span class="list-item-info">
-                                        {% if n.is_open_p() %}
-                                            <span class="fa fa-eye" title="{{n.claims_text()}}"></span> open
-                                        {% else %}
-                                            <span class="fa fa-eye-slash" title="This is a closed notebook. Only project members can see it."></span> closed
-                                        {% endif %}
-                                    </span-->
                                     <span class="list-item-info">
                                         {{n.get_number_of_notes()}} notes
                                     </span>
@@ -68,43 +61,39 @@
                             </div>
                             <div class="panel-collapse collapse" id="{{n.key.integer_id()}}">
                                 <div class="panel-body">
-                                    <div class="card-list-item-actions">
-                                        <a href="/{{project.key.integer_id()}}/notebooks/{{n.key.integer_id()}}/new_note">
-                                            New note
-                                        </a>
-                                        <a href="/{{project.key.integer_id()}}/notebooks/{{n.key.integer_id()}}/_utils/index"
-                                        data-toggle="modal" data-target="#nbIndexModal{{n.key.integer_id()}}">
-                                            <span class="fa fa-list"></span> Index
-                                        </a>
-                                        <a href="/{{project.key.integer_id()}}/notebooks/{{n.key.integer_id()}}/edit">
-                                            <span class="fa fa-cog"></span> Settings
-                                        </a>
-                                    </div>
-
-                                    <hr style="margin-top: 10px; margin-bottom: 10px;">
-
                                     {{n.description | md | safe }}
 
-                                    <div class="text-muted">
-                                        <small>
-                                            <span>
-                                                Owned by <a href="/{{n.owner.get().username}}">{{n.owner.get().username.capitalize()}}</a>
-                                            </span>
+                                    {% if n.description %}
+                                        <hr class="small-margins">
+                                    {% endif %}
 
-                                            <span style="margin-left: 12px;">
-                                                Last updated on {{n.last_updated.strftime("%d %b %Y")}}
-                                            </span>
-                                        </small>
+                                    <div class="info-footer">
+                                        <span class="info-blurb">
+                                            Owned by
+                                            <a href="/{{n.owner.get().username}}">{{n.owner.get().username.capitalize()}}</a>
+                                        </span>
+
+                                        <span class="info-blurb">
+                                            Last updated on {{n.last_updated.strftime("%d %b %Y")}}
+                                        </span>
+
+                                        <span class="info-blurb">
+                                            {% if n.is_open_p() %}
+                                                <span title="{{n.claims_text()}}">
+                                                    <span class="fa fa-eye"></span> Open; everyone can read
+                                                </span>
+                                            {% else %}
+                                                <span  title="This is a closed notebook. Only project members can see it.">
+                                                    <span class="fa fa-eye-slash"></span> Closed; only project members can read
+                                                </span>
+                                            {% endif %}
+                                        </span>
+
+                                        <a class="pull-right">
+                                            Read &amp; edit notebook &raquo;
+                                        </a>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Index modal -->
-                        <div class="modal fade" id="nbIndexModal{{n.key.integer_id()}}" tabindex="-1" role="dialog"
-                            aria-labelledby="nbIndexModalLabel{{n.key.integer_id()}}" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content"></div>
                             </div>
                         </div>
                     {% endfor %}

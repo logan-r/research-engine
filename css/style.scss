@@ -25,6 +25,7 @@
 	color: $dark-color--second;
 	@include transition(color $color-transition-time ease-out);
 	cursor: pointer;
+	text-decoration: none;
 
 	&:hover, &:focus, &:active {
 		color: $dark-color--prime;
@@ -83,6 +84,11 @@ h1, h2, h3, h4, h5, h6 {
 a {
 	@extend .link;
 	font-weight: bold;
+}
+
+hr.small-margins {
+	margin-top: $spacing-lg;
+	margin-bottom: $spacing-lg;
 }
 
 textarea {
@@ -257,9 +263,25 @@ html, body {
 			}
 		}
 	}
+}
 
-	.list-item-expandable {
-		@extend .panel-collapse, .collapse;
+.info-footer {
+	/**
+	 * Footer for the bottom of cards and panels that displays info/stats in a spaced out format
+	 * e.g. for a note, the info footer at the bottom of the note card could display
+	 *      the created date, author, # of comments, etc. along with a comment button
+	 */
+	font-size: 0.9em;
+	margin: $spacing-xxs;
+	margin-top: 0;
+
+	.info-blurb {
+		color: $dark-color--second;
+		margin-right: $spacing-lg + $spacing-xs;
+	}
+
+	a {
+		@extend .dark-link;
 	}
 }
 
