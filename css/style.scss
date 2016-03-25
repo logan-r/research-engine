@@ -9,7 +9,7 @@
 	 * Abstract style for text that normally possess a blue color that changes to a lighter blue on mouse hover/click
 	 */
 	color: $complement-color--prime;
-	@include transition(color 0.8s);
+	@include transition(color $color-transition-time ease-out);
 
 	&:hover, &:focus, &:active {
 		color: $complement-color--second;
@@ -21,7 +21,7 @@
 	 * Like .link, but posssess grey text that changes to black on mouse hover/click
 	 */
 	color: $dark-color--second;
-	@include transition(color 0.8s);
+	@include transition(color $color-transition-time ease-out);
 
 	&:hover, &:focus, &:active {
 		color: $dark-color--prime;
@@ -73,7 +73,7 @@ a {
 	border-color: $base-color--prime !important;
 	border-radius: 0;
 	font-weight: normal;
-	@include transition(background 0.7s);
+	@include transition(background $color-transition-time);
 
 	&:hover, &:active, &:focus {
 		background: $light-color--second;
@@ -88,7 +88,7 @@ textarea {
 .form-control {
 	border-radius: 0;
 	box-shadow: none !important;
-	@include transition(border-color 0.7s);
+	@include transition(border-color $color-transition-time);
 
 	&:focus {
 		border-color: $base-color--prime;
@@ -403,7 +403,7 @@ a {
 
 	margin-bottom: 0;
 	border-bottom: none;
-	background: #506C6A;
+	background: $base-color--prime;
 	box-shadow: inset 0 -7px 8px -7px rgba(0, 0, 0, 0.4);
 
 	.navbar-brand {
