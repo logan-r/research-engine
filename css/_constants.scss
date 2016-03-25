@@ -12,10 +12,18 @@ $complement-color--second: #4f83b0;
 /*---*/
 $light-color--prime: #FFFFFF;
 $light-color--second: #EEEEEE;
-$light-color--third: #CCCCCC;
+$light-color--third: #DDDDDD;
 /*---*/
 $dark-color--prime: #333333;
 $dark-color--second: #777777;
+
+/** SPACING (e.g. padding, margin, whitespace in general) **/
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 24px;
+$spacing-xxl: 36px;
 
 /** ANIMATION **/
 $color-transition-time: 0.6s;

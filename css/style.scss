@@ -1,15 +1,17 @@
+@import 'bootstrap';
 @import 'constants';
 @import 'helpers';
 @import 'md-editor';
 
 
-/** ABSTRACT STYLES - should not be used directly in .html (should only be inherited by other .scss styles) */
+/** BASIC CLICKABLE ACTION LINK/BUTTON TYPES */
 .link {
 	/**
 	 * Abstract style for text that normally possess a blue color that changes to a lighter blue on mouse hover/click
 	 */
 	color: $complement-color--prime;
 	@include transition(color $color-transition-time ease-out);
+	cursor: pointer;
 
 	&:hover, &:focus, &:active {
 		color: $complement-color--second;
@@ -22,9 +24,25 @@
 	 */
 	color: $dark-color--second;
 	@include transition(color $color-transition-time ease-out);
+	cursor: pointer;
 
 	&:hover, &:focus, &:active {
 		color: $dark-color--prime;
+	}
+}
+
+.btn {
+	background: none;
+	color: $base-color--prime;
+	border-color: $base-color--prime !important;
+	border-radius: 0;
+	font-weight: normal;
+	@include transition(background $color-transition-time);
+	cursor: pointer;
+
+	&:hover, &:active, &:focus {
+		background: $light-color--second;
+		color: $base-color--prime;
 	}
 }
 
@@ -67,20 +85,6 @@ a {
 	font-weight: bold;
 }
 
-.btn {
-	background: none;
-	color: $base-color--prime;
-	border-color: $base-color--prime !important;
-	border-radius: 0;
-	font-weight: normal;
-	@include transition(background $color-transition-time);
-
-	&:hover, &:active, &:focus {
-		background: $light-color--second;
-		color: $base-color--prime;
-	}
-}
-
 textarea {
 	resize: vertical;
 }
@@ -113,11 +117,10 @@ html, body {
 	}
 }
 
-/** TODO: refactor **/
-.project-tab-header {
+.content-header {
 	margin: 0;
-	padding-top: 12px;
-	padding-bottom: 16px;
+	padding-top: $spacing-md;
+	padding-bottom: $spacing-lg;
 	border-bottom: 1px solid $light-color--second;
 
 	.parent-link {
@@ -139,21 +142,21 @@ html, body {
 			margin-left: 15px;
 		}
 	}
+
+	&.no-content-action-bar {
+		margin-bottom: $spacing-lg;
+	}
 }
 
-.project-tab-header.no-action-bar {
-	margin-bottom: 16px;
-}
-
-.project-tab-actions {
+.content-action-bar {
 	border-bottom: 1px solid $light-color--second;
-	margin-bottom: 20px;
-	padding-top: 14px;
-	padding-bottom: 14px;
+	margin-bottom: $spacing-xl;
+	padding-top: $spacing-md;
+	padding-bottom: $spacing-md;
 
 	a:not(.unstyled) {
 		@extend .dark-link;
-		margin-left: 15px;
+		margin-left: $spacing-lg;
 		text-decoration: none;
 
 		&.active {
@@ -164,7 +167,7 @@ html, body {
 
 	*.pull-right a:not(.unstyled), a:not(.unstyled).pull-right {
 		margin-left: 0;
-		margin-right: 15px;
+		margin-right: $spacing-lg;
 	}
 }
 
@@ -183,10 +186,10 @@ html, body {
 
 	&.content-body-form {
 		.content-section {
-			margin-top: 28px;
+			margin-top: $spacing-xl;
 
 			&:first-child {
-				margin-top: 16px;
+				margin-top: $spacing-lg;
 			}
 
 			.title {
@@ -197,8 +200,68 @@ html, body {
 }
 
 
+/** COMPLEX ELEMENTS **/
+.block-list {
+	@extend .panel-group;
 
+	.list-item {
+		@extend .panel;
+		border-radius: 0 !important;
+		margin-top: -1px !important;
+		border-color: $light-color--third;
+		padding: 0;
 
+		.list-item-heading {
+			@extend .panel-heading;
+			background: #fff;
+			border-color: $light-color--third;
+			padding: 0;
+
+			.list-item-heading-title {
+				display: block;
+				padding: $spacing-lg $spacing-xl;
+				@include transition(background-color $color-transition-time);
+
+				&:hover, &:active, &:focus {
+					background-color: $light-color--second;
+				}
+
+				.list-item-info {
+					/**
+					 * A little greyed-out blurb of text that will show up at the right edge of the box.
+					 * Good for displaying statistics about the item the .list-item is representing
+					 * 		e.g. if the .list-item was representing a notebook, .list-item-info
+					 *			 could be used to display the number of notes in the notebook.
+					 */
+					@extend .pull-right;
+					color: $dark-color--second !important;
+					font-size: 0.85em;
+					line-height: 1.7em;
+					margin-left: $spacing-xxl;
+
+					.fa {
+						font-size: 1em;
+					}
+				}
+			}
+
+			.list-item-action {
+				/**
+				 * An action button that will show up at the right edge of the .list-item
+				 * e.g. an arrow to go to the more details page about the item in question,
+				 *      or a different arrow to expand the accordian associated with the item.
+				 */
+				@extend .dark-link, .pull-right;
+				padding: $spacing-lg $spacing-xl;
+				padding-left: $spacing-xxl;
+			}
+		}
+	}
+
+	.list-item-expandable {
+		@extend .panel-collapse, .collapse;
+	}
+}
 
 
 /** OTHER STUFF **/
@@ -245,20 +308,7 @@ a {
 
 
 /** Project tab structuer **/
-.project-tab-list {
-	.panel {
-		border-radius: 0 !important;
-		margin-top: -1px !important;
-	}
 
-	.panel-heading {
-		background: #fff;
-	}
-
-	.accordion-toggle .fa {
-		font-size: 1em !important;
-	}
-}
 
 .project-tab-comment {
 	background: #f0f0f0;
@@ -383,12 +433,8 @@ a {
 }
 
 .btn-muted {
-	color: #777;
+	@extend .dark-link;
 	cursor: pointer;
-}
-
-.btn-muted:hover {
-	color: #333;
 }
 
 .btn-muted .fa:not(.unstyled) {

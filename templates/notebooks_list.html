@@ -19,7 +19,7 @@
     </div>
 </div>
 
-<h2 class="project-tab-header{% if not (user and project.user_is_author(user)) %} no-action-bar{% endif %}">
+<h2 class="content-header {% if not (user and project.user_is_author(user)) %}no-content-action-bar{% endif %}">
     Notebooks
     <a href="#project-menu" class="skiptocontent">Skip to project menu</a>
 
@@ -31,7 +31,7 @@
 </h2>
 
 {% if (user and project.user_is_author(user)) %}
-    <div class="project-tab-actions">
+    <div class="content-action-bar">
         <a href="/{{project.key.integer_id()}}/notebooks/new">
             New notebook
         </a>
@@ -42,32 +42,29 @@
             <section class="content-section">
                 <h3 class="title">My notebooks</h3>
 
-                <div class="panel-group project-tab-list" id="myaccordion">
+                <div class="block-list block-list-accordian" id="myaccordion">
                     {% for n in my_notebooks %}
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <span class="pull-right">
-                                        <div style="margin-right: 20px; display: inline-block; font-size: 0.8em;" class="text-muted">
-                                            {{n.get_number_of_notes()}} notes
-                                        </div>
+                        <div class="list-item">
+                            <div class="list-item-heading">
+                                <span class="list-item-action" data-toggle="collapse" data-parent="#myaccordion" href="#{{n.key.integer_id()}}">
+                                    <span class="fa fa-chevron-down"></span>
+                                    <span class="fa fa-chevron-up" hidden></span>
+                                </span>
 
-                                        <span  class="accordion-toggle btn-muted" data-toggle="collapse" data-parent="#myaccordion" href="#{{n.key.integer_id()}}">
-                                            <span class="fa fa-chevron-down"></span>
-                                            <span class="fa fa-chevron-up" hidden></span>
-                                        </span>
+                                <a href="/{{project.key.integer_id()}}/notebooks/{{n.key.integer_id()}}" class="list-item-heading-title">
+                                    <!--span class="list-item-info">
+                                        {% if n.is_open_p() %}
+                                            <span class="fa fa-eye" title="{{n.claims_text()}}"></span> open
+                                        {% else %}
+                                            <span class="fa fa-eye-slash" title="This is a closed notebook. Only project members can see it."></span> closed
+                                        {% endif %}
+                                    </span-->
+                                    <span class="list-item-info">
+                                        {{n.get_number_of_notes()}} notes
                                     </span>
-                                    <a href="/{{project.key.integer_id()}}/notebooks/{{n.key.integer_id()}}" style="padding-right: 20px;">
-                                        <div style="margin-right: 10px; display: inline-block;">
-                                            {% if n.is_open_p() %}
-                                                <span class="fa fa-eye" title="{{n.claims_text()}}"></span>
-                                            {% else %}
-                                                <span class="fa fa-eye-slash" title="This is a closed notebook. Only project members can see it."></span>
-                                            {% endif %}
-                                        </div><!--
-                                        -->{{n.name | safe}}<!--
-                                    --></a>
-                                </h4>
+
+                                    {{n.name | safe}}
+                                </a>
                             </div>
                             <div class="panel-collapse collapse" id="{{n.key.integer_id()}}">
                                 <div class="panel-body">
