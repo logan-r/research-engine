@@ -204,6 +204,11 @@ html, body {
 		@extend .secondary-header;
 	}
 
+	.title.title-muted {
+		color: $dark-color--second;
+		font-weight: normal;
+	}
+
 	h1, h2, h3, h4, h5, h6 {
 		margin-bottom: $spacing-md;
 		color: $base-color--prime;
@@ -311,6 +316,31 @@ html, body {
 	}
 }
 
+.card {
+	padding: $spacing-xxl;
+	border: 1px solid $light-color--third;
+    margin-top: $spacing-xl;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+	margin-top: 0;
+	margin-bottom: 0 !important;
+}
+
+.card-heading {
+	margin-bottom: $spacing-xl;
+	display: block;
+}
+
+.card-actions {
+	margin-top: $spacing-xxl;
+}
+
+.card-actions a {
+	@extend .dark-link;
+	margin-right: $spacing-lg;
+}
 
 /** OTHER STUFF **/
 .alert {
@@ -449,35 +479,6 @@ a {
 .form-container .checkbox {
 	margin-top: 20px;
 	margin-bottom: 20px;
-}
-
-.card-list-item {
-	padding: 30px;
-	border: 1px solid #ddd;
-    margin-top: 25px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-}
-
-.card-list-item h3 {
-	margin-top: 0;
-}
-
-.card-list-item h3 a:not(.btn-muted) {
-	color: #000;
-}
-
-.card-list-item-actions a {
-	margin-right: 15px;
-	color: #777;
-	text-decoration: none !important;
-}
-
-.card-list-item-actions a:hover {
-	color: #333;
-}
-
-.card-list-item-actions a .fa {
-	font-size: 0.9em;
 }
 
 .btn-muted {

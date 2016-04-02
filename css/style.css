@@ -5056,7 +5056,7 @@ th.visible-print, td.visible-print {
   .link:hover, a:hover, .link:focus, a:focus, .link:active, a:active {
     color: #4f83b0; }
 
-.dark-link, .content-header .actions a, .content-action-bar a:not(.unstyled), .block-list .list-item .list-item-heading .list-item-action, .info-footer a, .btn-muted {
+.dark-link, .content-header .actions a, .content-action-bar a:not(.unstyled), .block-list .list-item .list-item-heading .list-item-action, .info-footer a, .card-actions a, .btn-muted {
   /**
    * Like .link, but posssess grey text that changes to black on mouse hover/click
    */
@@ -5067,7 +5067,7 @@ th.visible-print, td.visible-print {
   transition: color 0.6s ease-out;
   cursor: pointer;
   text-decoration: none; }
-  .dark-link:hover, .content-header .actions a:hover, .content-action-bar a:hover:not(.unstyled), .block-list .list-item .list-item-heading .list-item-action:hover, .info-footer a:hover, .btn-muted:hover, .dark-link:focus, .content-header .actions a:focus, .content-action-bar a:focus:not(.unstyled), .block-list .list-item .list-item-heading .list-item-action:focus, .info-footer a:focus, .btn-muted:focus, .dark-link:active, .content-header .actions a:active, .content-action-bar a:active:not(.unstyled), .block-list .list-item .list-item-heading .list-item-action:active, .info-footer a:active, .btn-muted:active {
+  .dark-link:hover, .content-header .actions a:hover, .content-action-bar a:hover:not(.unstyled), .block-list .list-item .list-item-heading .list-item-action:hover, .info-footer a:hover, .card-actions a:hover, .btn-muted:hover, .dark-link:focus, .content-header .actions a:focus, .content-action-bar a:focus:not(.unstyled), .block-list .list-item .list-item-heading .list-item-action:focus, .info-footer a:focus, .card-actions a:focus, .btn-muted:focus, .dark-link:active, .content-header .actions a:active, .content-action-bar a:active:not(.unstyled), .block-list .list-item .list-item-heading .list-item-action:active, .info-footer a:active, .card-actions a:active, .btn-muted:active {
     color: #333333; }
 
 .btn {
@@ -5186,6 +5186,9 @@ html, body {
     margin-top: 16px; }
   .content-body.content-body-form .content-section .title {
     line-height: initial; }
+.content-body .title.title-muted {
+  color: #777777;
+  font-weight: normal; }
 .content-body h1, .content-body h2, .content-body h3, .content-body h4, .content-body h5, .content-body h6 {
   margin-bottom: 12px;
   color: #506C6A; }
@@ -5256,6 +5259,26 @@ html, body {
   .info-footer .info-blurb {
     color: #777777;
     margin-right: 20px; }
+
+.card {
+  padding: 36px;
+  border: 1px solid #DDDDDD;
+  margin-top: 24px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); }
+
+.card-title {
+  margin-top: 0;
+  margin-bottom: 0 !important; }
+
+.card-heading {
+  margin-bottom: 24px;
+  display: block; }
+
+.card-actions {
+  margin-top: 36px; }
+
+.card-actions a {
+  margin-right: 16px; }
 
 /** OTHER STUFF **/
 .alert {
@@ -5357,29 +5380,6 @@ a {
 .form-container .checkbox {
   margin-top: 20px;
   margin-bottom: 20px; }
-
-.card-list-item {
-  padding: 30px;
-  border: 1px solid #ddd;
-  margin-top: 25px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); }
-
-.card-list-item h3 {
-  margin-top: 0; }
-
-.card-list-item h3 a:not(.btn-muted) {
-  color: #000; }
-
-.card-list-item-actions a {
-  margin-right: 15px;
-  color: #777;
-  text-decoration: none !important; }
-
-.card-list-item-actions a:hover {
-  color: #333; }
-
-.card-list-item-actions a .fa {
-  font-size: 0.9em; }
 
 .btn-muted {
   cursor: pointer; }
