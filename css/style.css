@@ -5092,7 +5092,7 @@ th.visible-print, td.visible-print {
 .sub-header {
   /** TODO **/ }
 
-.secondary-header, .content-body .content-section .title {
+.secondary-header, .content-body .title {
   /**
    * A header that exists below another, more important header
    */
@@ -5178,13 +5178,30 @@ html, body {
 .content-body .content-section {
   margin-top: 48px; }
   .content-body .content-section:first-child {
-    margin-top: 32px; }
+    margin-top: 0;
+    /*$spacing-xl + $spacing-sm;*/ }
 .content-body.content-body-form .content-section {
   margin-top: 24px; }
   .content-body.content-body-form .content-section:first-child {
     margin-top: 16px; }
   .content-body.content-body-form .content-section .title {
     line-height: initial; }
+.content-body h1, .content-body h2, .content-body h3, .content-body h4, .content-body h5, .content-body h6 {
+  margin-bottom: 12px;
+  color: #506C6A; }
+.content-body h1 {
+  font-weight: bold;
+  font-size: 1.6em;
+  color: #333333; }
+.content-body h2 {
+  border-bottom: 1px solid #DDDDDD;
+  font-size: 1.6em;
+  padding-bottom: 8px;
+  padding-left: 4px; }
+.content-body h3 {
+  font-size: 1.4em; }
+.content-body h4 {
+  font-size: 1.2em; }
 
 /** COMPLEX ELEMENTS **/
 .block-list .list-item {

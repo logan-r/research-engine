@@ -66,7 +66,6 @@
 	color: $base-color--prime;
 	font-weight: bold;
 	padding-left: $spacing-xxs;
-
 }
 
 
@@ -183,11 +182,7 @@ html, body {
 		margin-top: $spacing-xxl + $spacing-md;
 
 		&:first-child {
-			margin-top: $spacing-xl + $spacing-sm;
-		}
-
-		.title {
-			@extend .secondary-header;
+			margin-top: 0;/*$spacing-xl + $spacing-sm;*/
 		}
 	}
 
@@ -203,6 +198,36 @@ html, body {
 				line-height: initial;
 			}
 		}
+	}
+
+	.title {
+		@extend .secondary-header;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		margin-bottom: $spacing-md;
+		color: $base-color--prime;
+	}
+
+	h1 {
+		font-weight: bold;
+		font-size: 1.6em;
+		color: $dark-color--prime;
+	}
+
+	h2 {
+		border-bottom: 1px solid $light-color--third;
+		font-size: 1.6em;
+		padding-bottom: $spacing-sm;
+		padding-left: $spacing-xs;
+	}
+
+	h3 {
+		font-size: 1.4em;
+	}
+
+	h4 {
+		font-size: 1.2em;
 	}
 }
 

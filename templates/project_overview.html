@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<h2 class="project-tab-header no-action-bar" {% if intro_p %} data-step="1" data-intro="Welcome to your first project at {{APP_NAME}}."{% endif %}>
+<h2 class="content-header no-content-action-bar" {% if intro_p %} data-step="1" data-intro="Welcome to your first project at {{APP_NAME}}."{% endif %}>
     {{project.name | safe}}
     <a href="#project-menu" class="skiptocontent">Skip to project menu</a>
 
@@ -32,44 +32,46 @@
     </div>
 </h2>
 
-<div>{{project.description | md | safe}}</div>
+<div class="content-body">
+    <section class="content-section">
+        {{project.description | md | safe}}
+    </section>
 
-<h3>Authors</h3>
-<ul class="nav nav-pills">
-    {% for a in authors %}
-        <li>
-            <a href="/{{a.username}}">
-                <img src="{{a.get_profile_image(20)}}" aria-hidden="true"/>
-                {{a.username.capitalize()}}
-            </a>
-        </li>
-    {% endfor %}
-</ul>
-
-<div>
-    <div class="pull-right text-muted">
-        Last updated on {{project.last_updated.strftime("%d %b %Y")}}
-    </div>
-    <h3>Latest activity</h3>
-
-    {% if updates %}
-        <div class="list-group" role="log">
-            {% for u in updates %}
-                {% if (not visitor_p) or u.is_open_p() %}
-                    <div class="list-group-item">
-                        <img src="{{u.author.get().get_profile_image(20)}}" aria-hidden="true"/>
-                        {{u.description_html(project, show_project_p = False) | safe}}
-
-                        <span class="text-muted pull-right">
-                            {{u.date.strftime("%d %b %H:%M")}}
-                        </span>
-                    </div>
-                {% endif %}
+    <section class="content-section">
+        <h2>Authors</h2>
+        <ul class="nav nav-pills">
+            {% for a in authors %}
+                <li>
+                    <a href="/{{a.username}}">
+                        <img src="{{a.get_profile_image(20)}}" aria-hidden="true"/>
+                        {{a.username.capitalize()}}
+                    </a>
+                </li>
             {% endfor %}
-        </div>
-    {% else %}
-        <em>There has been no activity in this project yet</em>
-    {% endif %}
-</div>
+        </ul>
+    </section>
+
+    <section class="content-section">
+        <h2>Latest activity</h2>
+
+        {% if updates %}
+            <div class="list-group" role="log">
+                {% for u in updates %}
+                    {% if (not visitor_p) or u.is_open_p() %}
+                        <div class="list-group-item">
+                            <img src="{{u.author.get().get_profile_image(20)}}" aria-hidden="true"/>
+                            {{u.description_html(project, show_project_p = False) | safe}}
+
+                            <span class="text-muted pull-right">
+                                {{u.date.strftime("%d %b %H:%M")}}
+                            </span>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <em>There has been no activity in this project yet</em>
+        {% endif %}
+    </section>
 
 {% endblock %}
