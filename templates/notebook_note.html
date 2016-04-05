@@ -35,7 +35,7 @@
             on {{note.date.strftime("%d %b %Y")}}
         </section>
 
-        <section class="content-section">
+        <section class="content-section" id="comments">
             <h2>Comments</h2>
             {% for c in comments %}
                 <div class="project-tab-comment">
@@ -86,7 +86,7 @@
         </section>
 
         {% if user and project.user_is_author(user) %}
-            <section class="content-section">
+            <section class="content-section" id="new-comment">
                 <h2>Leave a comment...</h2>
                 <form method="post" role="form">
                     <div class="form-group">
