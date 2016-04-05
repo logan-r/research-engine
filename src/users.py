@@ -20,7 +20,7 @@ class LoginPage(generic.GenericPage):
               'goback' : self.request.get('goback'),
               'r_error_message' : self.request.get('r_error_message'),
               'info' : self.request.get('info')}
-        if kw['user']: 
+        if kw['user']:
             self.redirect("%s" % kw["goback"] if kw["goback"] else "/")
             return
         self.render("login.html", **kw)
@@ -54,7 +54,7 @@ class LoginPage(generic.GenericPage):
 #            u.password_hash = generic.hash_str(password + u.salt)
 #            self.log_and_put(u, "Making new salt. ")
             self.set_cookie("username", u.username, u.salt, max_age = LOGIN_COOKIE_MAXAGE)
-            if kw['goback']: 
+            if kw['goback']:
                 self.redirect(kw['goback'])
                 return
             self.redirect("/%s" % u.username)
@@ -169,7 +169,7 @@ class SettingsPage(generic.GenericPage):
         if not user:
             self.redirect("/login?goback=/settings")
             return
-        kw = {"usern"    : user.username, 
+        kw = {"usern"    : user.username,
               "email"    : user.email,
               "about_me" : user.about_me if user.about_me else '',
               "gplusid"  : user.gplusid if user.gplusid else '',
@@ -208,7 +208,7 @@ class SettingsPage(generic.GenericPage):
         if have_error:
             self.render("settings.html", **kw)
         else:
-            user.username = kw["usern"] 
+            user.username = kw["usern"]
             user.email = kw["email"]
             user.about_me = kw["about_me"]
             if user.gplusid: user.set_gplus_profile()
@@ -229,7 +229,7 @@ class RecoverPasswordPage(generic.GenericPage):
         user = self.get_user_by_email(email)
         if not user:
             have_error = True
-            error = "There's not a user with that email %s" % email            
+            error = "There's not a user with that email %s" % email
         else:
             if not key == generic.hash_str(user.username + user.salt):
                 have_error = True
@@ -307,7 +307,7 @@ class VerifyEmailPage(generic.GenericPage):
         if not u:
             logging.warning("Handler VerifyEmailPage attempted to verify an email not in Datastore.")
             self.error(404)
-            return 
+            return
         if generic.hash_str(username + u.salt) == h:
             new_user = generic.RegisteredUsers(username = u.username,
                                                password_hash = u.password_hash,
@@ -350,10 +350,10 @@ class AuthHandler(generic.GenericPage, simpleauth.SimpleAuthHandler):
                                            password_hash = generic.hash_str(generic.make_salt() + salt),
                                            salt = salt,
                                            email = data['email'])
-            if data['id']: 
+            if data['id']:
                 user.gplusid = data['id']
                 user.set_gplus_profile()
-                try: 
+                try:
                     user.about_me = user.gplus_profile_json['aboutMe']
                 except:
                     pass
@@ -362,7 +362,7 @@ class AuthHandler(generic.GenericPage, simpleauth.SimpleAuthHandler):
             new_user_p = True
         if (not new_user_p) and data['id']:
             try:
-                user.gplusid = data['id']                
+                user.gplusid = data['id']
                 user.set_gplus_profile()
                 user.set_profile_image_url(provider = "google")
             except:
@@ -370,7 +370,7 @@ class AuthHandler(generic.GenericPage, simpleauth.SimpleAuthHandler):
         self.set_cookie("username", user.username, user.salt, max_age = LOGIN_COOKIE_MAXAGE)
         self.redirect("/settings" if new_user_p else "/")
 
-        
+
     def logout(self):
         self.remove_cookie("username")
         self.auth.unset_session()
@@ -383,7 +383,7 @@ class AuthHandler(generic.GenericPage, simpleauth.SimpleAuthHandler):
         """Should return a tuple (key, secret) for auth init requests.
         For OAuth 2.0 you should also return a scope, e.g.
         ('my app id', 'my app secret', 'email,user_about_me')
-        
+
         The scope depends solely on the provider.
         See example/secrets.py.template
         """
