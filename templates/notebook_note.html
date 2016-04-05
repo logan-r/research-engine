@@ -73,7 +73,7 @@
                     {{c.comment | md | safe}}
 
                     <div>
-                        <small class="text-muted">
+                        <small class="title title-muted">
                             By <a href="/{{c.author.get().username}}">{{c.author.get().username.capitalize()}}</a>
                             on {{c.date.strftime("%d %b %Y")}}
                         </small>
@@ -90,9 +90,7 @@
                 <h2>Leave a comment...</h2>
                 <form method="post" role="form">
                     <div class="form-group">
-                        <textarea id="newCommentText" name="comment" class="md-editor"><!--
-                            -->{{comment_value}}<!--
-                        --></textarea>
+                        <textarea id="newCommentText" name="comment" class="md-editor">{{comment_value}}</textarea>
                     </div>
                     <button type="submit" class="btn">Comment</button>
                 </form>
