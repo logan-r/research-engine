@@ -26,13 +26,13 @@
 
     <div class="content-body">
         <section class="content-section">
+            <div class="title title-muted">
+                On {{note.date.strftime("%d %b %Y")}},
+                <a href="/{{note.get_author().username}}" class="unstyled">{{note.get_author().username.capitalize()}}</a>
+                wrote:
+            </div>
+            <br>
             {{note.content | md | safe}}
-        </section>
-
-        <section class="content-section text-muted">
-            Written by
-            <a href="/{{note.get_author().username}}" class="unstyled">{{note.get_author().username.capitalize()}}</a>
-            on {{note.date.strftime("%d %b %Y")}}
         </section>
 
         <section class="content-section" id="comments">

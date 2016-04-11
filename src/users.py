@@ -160,7 +160,7 @@ class SignupPage(generic.GenericPage):
             u = generic.UnverifiedUsers(username = usern, password_hash = ph, salt = salt, email = email)
             self.log_and_put(u, "New user registration")
             email_messages.send_verify_email(u)
-            self.render('signup.html', info = "A message has been sent to your email, please follow the instructions provided there.")
+            self.render('signup.html', info = "A message has been sent to your email, please follow the instructions provided there." + "/verify_email?username=%s&h=%s" % (u.username, generic.hash_str(u.username + u.salt)))
 
 
 class SettingsPage(generic.GenericPage):

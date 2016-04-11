@@ -23,7 +23,7 @@ jinja_env.filters['nowhitespace'] = filters.noWhitespace
 
 # You should change these if you are registering your own app on App Engine
 APP_NAME = "Research Engine"
-APP_VERSION = "1.5.3"
+APP_VERSION = "1.5.5"
 APP_URL = "https://research-engine.appspot.com"
 ADMIN_EMAIL = "admin@research-engine.appspotmail.com"
 APP_REPO = "https://github.com/andresgsaravia/research-engine"

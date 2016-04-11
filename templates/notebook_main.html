@@ -15,7 +15,7 @@
             <a href="/{{project.key.integer_id()}}/notebooks">Notebooks</a>
         </div>
 
-        {{notebook.name | safe}}
+        {{notebook.name}}
         <a href="#project-menu" class="skiptocontent">Skip to project menu</a>
 
         {% if writable_p %}
@@ -27,6 +27,18 @@
         {% endif %}
     </h2>
 
+    <div class="dropdown pull-right" style="margin-top:5px;">
+      <button class="dropdown-toggle btn btn-link" type="button" id="dropdownPrint"
+    	  style="color:#777;font-weight:bold;"
+    	  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <span class="fa fa-print"></span> Printable version
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownPrint">
+        <li><a href="/{{project.key.integer_id()}}/notebooks/{{notebook.key.integer_id()}}/_utils/html_export?d=asc">Ascending date</a></li>
+        <li><a href="/{{project.key.integer_id()}}/notebooks/{{notebook.key.integer_id()}}/_utils/html_export?d=desc">Descending date</a></li>
+      </ul>
+    </div>
     <div class="content-action-bar">
         {% if writable_p %}
             <a href="/{{project.key.integer_id()}}/notebooks/{{notebook.key.integer_id()}}/new_note">

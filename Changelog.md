@@ -1,11 +1,12 @@
-# Version 1.5.2 (4 April 2016)
 
 ## New features
 
 - Can edit group event details (issue #221)
+- Printable version of notebooks in ascending and descending date order for the notebooks
 
 ## Fixes
 
+- Send notifications of new events in a group every 5 minutes insted of instantaneously (hopefully this fixes #222)
 - Weekly bibliography review email with too many items (issue #224)
 - Mathjax rendering in HTML export of a collaborative writing (issue #225)
 
