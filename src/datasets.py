@@ -1,7 +1,7 @@
 # datasets.py
 # A module inside each project for uploading and managing datasets
 
-import generic, projects
+import generic, projects, groups
 
 from google.appengine.ext import ndb,blobstore
 from google.appengine.ext.webapp import blobstore_handlers
@@ -67,7 +67,7 @@ class DataPage(projects.ProjectPage):
         self.log_read(DataSets, log_message)
         return DataSets.get_by_id(int(datasetid), parent = project.key)
 
-    def get_dataconcepts(self, dataset):        
+    def get_dataconcepts(self, dataset):
         self.log_read(DataConcepts, "Fetching all DataConcepts for a DataSet. ")
         return DataConcepts.query(ancestor = dataset.key).order(-DataConcepts.date).fetch()
 
@@ -88,7 +88,7 @@ class MainPage(DataPage):
     def get(self, projectid):
         user = self.get_login_user()
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -102,9 +102,9 @@ class NewDataSetPage(DataPage):
         if not user:
             goback = '/' + projectid + '/datasets/new'
             self.redirect("/login?goback=%s" % goback)
-            return        
+            return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -172,7 +172,7 @@ class DataSetPage(DataPage):
     def get(self, projectid, datasetid):
         user = self.get_login_user()
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -180,7 +180,7 @@ class DataSetPage(DataPage):
         if not dataset:
             self.error(404)
             self.render("404.html", info = 'Dataset with key <em>%s</em> not found' % datasetid)
-            return        
+            return
         if dataset.is_open_p() or (user and project.user_is_author(user)):
             self.render("dataset_view.html", project = project, dataset = dataset, items = self.get_dataconcepts(dataset))
         else:
@@ -194,7 +194,7 @@ class EditDataSetPage(DataPage):
             self.redirect("/login?goback=/%s/datasets/%s/new" % (projectid, datasetid))
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -278,7 +278,7 @@ class NewDataConceptPage(DataPage):
             self.redirect("/login?goback=/%s/datasets/%s/new_data" % (projectid, datasetid))
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -296,7 +296,7 @@ class NewDataConceptPage(DataPage):
               "submit_button_text" : "Create data concept",
               "markdown_p": True,
               "cancel_url" : "/%s/datasets/%s" % (projectid, datasetid),
-              "breadcrumb" : '<li><a href="/%s/datasets">Datasets</a></li><li class="active">%s</li>' 
+              "breadcrumb" : '<li><a href="/%s/datasets">Datasets</a></li><li class="active">%s</li>'
               % (projectid, dataset.name)}
         self.render("project_form_2.html", project = project, **kw)
 
@@ -340,8 +340,8 @@ class NewDataConceptPage(DataPage):
             kw["breadcrumb"] = '<li><a href="/%s/datasets">Datasets</a><li class="active">%s</li>' % (projectid, dataset.name)
             self.render("project_form_2.html", project = project, **kw)
         else:
-            new_dataconcept = DataConcepts(name = kw["name_value"], 
-                                           description = kw["content_value"], 
+            new_dataconcept = DataConcepts(name = kw["name_value"],
+                                           description = kw["content_value"],
                                            parent  = dataset.key)
             self.put_and_report(new_dataconcept, user, project, dataset)
             self.redirect("/%s/datasets/%s/%s" % (projectid, datasetid, new_dataconcept.key.integer_id()))
@@ -351,7 +351,7 @@ class DataConceptPage(DataPage):
     def get(self, projectid, datasetid, datacid):
         user = self.get_login_user()
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -381,7 +381,7 @@ class EditConceptPage(DataPage):
             self.redirect("/login?goback=/%s/datasets/%s/%s/edit" % (projectid, datasetid, datacid))
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -407,7 +407,7 @@ class EditConceptPage(DataPage):
             self.redirect("/login?goback=/%s/datasets/%s/%s/edit" % (projectid, datasetid, datacid))
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -453,7 +453,7 @@ class NewDataRevisionPage(DataPage):
             self.redirect("/login?goback=/%s/datasets/%s/%s/new" % (projectid, datasetid, datacid))
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -483,7 +483,7 @@ class EditRevisionPage(DataPage):
             self.redirect("/login?goback=/%s/datasets/%s/%s/edit/%s" % (projectid, datasetid, datacid, revid))
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -550,11 +550,11 @@ class DataSetBlobstoreUpload(generic.GenericBlobstoreUpload):
 class UploadDataRevisionHandler(DataSetBlobstoreUpload):
     def post(self, projectid, datasetid, datacid):
         user = self.get_login_user()
-        if not user: 
+        if not user:
             self.redirect("/login?goback=/%s/datasets/%s/%s/new" % (projectid, datasetid, datacid))
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -603,7 +603,7 @@ class UpdateDataRevisionHandler(DataSetBlobstoreUpload):
             self.redirect("/login?goback=/%s/datasets/%s/%s/edit" % (projectid, datasetid, datacid))
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return

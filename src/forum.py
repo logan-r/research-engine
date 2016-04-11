@@ -2,7 +2,7 @@
 # For the forums inside each project.
 
 from google.appengine.ext import ndb
-import generic, projects, secrets
+import generic, projects, secrets, groups
 
 
 ###########################
@@ -64,7 +64,7 @@ class MainPage(ForumPage):
     def get(self, projectid):
         user = self.get_login_user()
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -78,7 +78,7 @@ class NewThreadPage(ForumPage):
             self.redirect("/login?goback=/%s/forum/new_thread" % projectid)
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -99,7 +99,7 @@ class NewThreadPage(ForumPage):
             self.redirect("/login?goback=/%s/forum/new_thread" % projectid)
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -136,7 +136,7 @@ class ThreadPage(ForumPage):
     def get(self, projectid, threadid):
         user = self.get_login_user()
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -146,7 +146,7 @@ class ThreadPage(ForumPage):
             self.render("404.html", info = 'Thread with key <em>%s</em> not found' % threadid)
             return
         comments = self.get_comments(thread)
-        self.render("forum_thread.html", project = project, user = user, thread = thread, 
+        self.render("forum_thread.html", project = project, user = user, thread = thread,
                     comments = comments, plusone_p = True, fb_p = True, FACEBOOK_APP_ID = secrets.FACEBOOK_APP_ID)
 
     def post(self, projectid, threadid):
@@ -155,7 +155,7 @@ class ThreadPage(ForumPage):
             self.redirect("/login?goback=/%s/forum/%s" % (projectid, threadid))
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -186,7 +186,7 @@ class EditThreadPage(ForumPage):
             self.redirect("/login?goback=/%s/forum/%s/edit" % (projectid, threadid))
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -217,7 +217,7 @@ class EditThreadPage(ForumPage):
             self.redirect("/login?goback=/%s/forum/%s/edit" % (projectid, threadid))
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return

@@ -5,7 +5,7 @@ from google.appengine.api import images
 from google.appengine.ext import ndb, blobstore
 from google.appengine.ext.webapp import blobstore_handlers
 import urllib
-import generic, projects
+import generic, projects, groups
 
 
 ###########################
@@ -48,12 +48,12 @@ class MainPage(ImagesPage):
     def get(self, projectid):
         user = self.get_login_user()
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
         images = self.get_images_list(project)
-        self.render("images_main.html", project = project, user = user, images = images) 
+        self.render("images_main.html", project = project, user = user, images = images)
 
 
 class NewImagePage(ImagesPage):
@@ -63,7 +63,7 @@ class NewImagePage(ImagesPage):
              self.redirect("/login?goback=/%s/images/new" % projectid)
              return
          project = self.get_project(projectid)
-         if not project: 
+         if not project:
              self.error(404)
              self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
              return
@@ -123,7 +123,7 @@ class UploadNewImage(projects.ProjectBlobstoreUpload):
                                parent = project.key)
             self.put_and_report(new_image, user, project)
             self.redirect("/%s/images/" % projectid)
-            
+
 
 class EditImagePage(ImagesPage):
     def get(self, projectid, imageid):
@@ -132,7 +132,7 @@ class EditImagePage(ImagesPage):
             self.redirect("/login?goback=/%s/images/%s/edit" % (projectid, imageid))
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return

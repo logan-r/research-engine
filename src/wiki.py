@@ -3,7 +3,7 @@
 
 from google.appengine.ext import ndb
 import re
-import generic, projects
+import generic, projects, groups
 
 ###########################
 ##   Datastore Objects   ##
@@ -66,13 +66,13 @@ class GenericWikiPage(projects.ProjectPage):
     def get_comments_list(self, wikipage):
         self.log_read(WikiComments, "Fetching all the comments in the Talk page for a wiki page. ")
         return WikiComments.query(ancestor = wikipage.key).order(-WikiComments.date).fetch()
-        
+
 
 class ViewWikiPage(GenericWikiPage):
     def get(self, projectid, wikiurl):
         user = self.get_login_user()
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -81,7 +81,7 @@ class ViewWikiPage(GenericWikiPage):
             return
         wikipage = self.get_wikipage(project, wikiurl)
         wikitext = wikipage.content if wikipage else ''
-        self.render("wiki_view.html", project = project, view_p = True, 
+        self.render("wiki_view.html", project = project, view_p = True,
                     visitor_p = not (user and project.user_is_author(user)),
                     wikiurl = wikiurl, wikipage = wikipage, wikitext = wikitext)
 
@@ -92,17 +92,17 @@ class ViewWikiPage(GenericWikiPage):
             self.redirect("/login?goback=/%s/wiki/page/%s" % (projectid, wikiurl))
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
         action = self.request.get("action")
-        if not (project.user_is_author(user) 
-                and action == "toggle_visibility" 
+        if not (project.user_is_author(user)
+                and action == "toggle_visibility"
                 and wikiurl == "Main_Page"):
             self.redirect("/%s/wiki/page/%s" % (projectid, wikiurl))
             return
-        project.wiki_open_p = not project.wiki_open_p 
+        project.wiki_open_p = not project.wiki_open_p
         self.log_and_put(project)
         self.redirect("/%s/wiki/page/Main_Page" % projectid)
 
@@ -114,7 +114,7 @@ class EditWikiPage(GenericWikiPage):
             self.redirect("/login?goback=/%s/wiki/edit/%s" % (projectid, wikiurl))
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -131,7 +131,7 @@ class EditWikiPage(GenericWikiPage):
             self.redirect("/login?goback=/%s/wiki/edit/%s" % (projectid, wikiurl))
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -169,7 +169,7 @@ class HistoryWikiPage(GenericWikiPage):
     def get(self, projectid, wikiurl):
         user = self.get_login_user()
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -187,7 +187,7 @@ class RevisionWikiPage(GenericWikiPage):
     def get(self, projectid, wikiurl, revid):
         user = self.get_login_user()
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -213,13 +213,13 @@ class TalkWikiPage(GenericWikiPage):
     def get(self, projectid, wikiurl):
         user = self.get_login_user()
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
         if not (project.wiki_open_p or (user and project.user_is_author(user))):
             self.render("project_page_not_visible.html", project = project, user = user)
-            return        
+            return
         wikipage = self.get_wikipage(project, wikiurl)
         if not wikipage:
             self.error(404)
@@ -268,4 +268,3 @@ class TalkWikiPage(GenericWikiPage):
 #            new_comment = WikiComments(author = user.key, comment = comment, parent = wikipage.key)
  #           self.put_and_report(new_comment, user, project, wikipage)
         self.redirect("/%s/wiki/talk/%s" % (projectid, wikiurl) + "?error=%s" % error_message if error_message else '')
-

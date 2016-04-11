@@ -2,7 +2,7 @@
 # All related to public outreach
 
 from google.appengine.ext import ndb
-import generic, projects, secrets
+import generic, projects, secrets, groups
 
 POSTS_PER_PAGE = 10
 
@@ -60,7 +60,7 @@ class MainPage(PostPage):
             kw["page"] = 0
         kw["posts"], kw["next_page_cursor"], kw["more_p"] = self.get_posts_list(page_user, kw["page"])
         self.render("outreach_MainPage.html", page_user = page_user, user = user, **kw)
-    
+
 
 class NewPostPage(PostPage):
     def get(self, username):
@@ -159,4 +159,3 @@ class EditPostPage(PostPage):
             self.redirect("/%s/outreach/%s" % (username, postid))
         else:
             self.render("outreach_edit_post.html", user = user, **kw)
-

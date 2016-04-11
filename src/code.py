@@ -3,7 +3,7 @@
 
 from google.appengine.api import urlfetch
 from google.appengine.ext import ndb
-import generic, projects
+import generic, projects, groups
 import json, re
 
 GITHUB_REPO_RE = r'^https://github.com/[a-zA-Z0-9_-]+/[a-zA-Z0-9_-]+$'
@@ -72,7 +72,7 @@ class CodesListPage(CodePage):
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
-        self.render("code_list.html", project = project, 
+        self.render("code_list.html", project = project,
                     items = self.get_codes_list(project), visitor_p = not (user and project.user_is_author(user)))
 
 
@@ -186,7 +186,7 @@ class ViewCodePage(CodePage):
             self.redirect("/login?goback=/%s/code/%s" % (projectid, codeid))
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -218,7 +218,7 @@ class EditCodePage(CodePage):
             self.redirect("/login?goback=/%s/code/%s/edit" % (projectid, codeid))
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -249,7 +249,7 @@ class EditCodePage(CodePage):
             self.redirect("/login?goback=/%s/code/%s/edit" % (projectid, codeid))
             return
         project = self.get_project(projectid)
-        if not project: 
+        if not project:
             self.error(404)
             self.render("404.html", info = 'Project with key <em>%s</em> not found' % projectid)
             return
@@ -296,7 +296,7 @@ class EditCodePage(CodePage):
             kw["cancel_url"] = "/%s/code/%s" % (projectid, codeid)
             self.render("project_form_2.html", project = project, **kw)
         else:
-            if code.link != kw["name_value"]: 
+            if code.link != kw["name_value"]:
                 repo_json = json.loads(repo_fetch.content)
                 code.github_json = repo_json
                 code.name = repo_json["full_name"]
