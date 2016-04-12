@@ -1,0 +1,130 @@
+<!--
+    This file should inlcuded in all other template files that make use of simple-md-editor
+    (https://github.com/NextStepWebs/simplemde-markdown-editor)
+
+    @param editor_identifier  the css-style selection code by which the textarea you want to tansform
+                              into an editor can be found (e.g. ".md-editor")
+    @param hide_statusbar  set equal to True if you don't want to display the bar with the word and
+                           character count at the bottom
+-->
+
+{% macro init(hide_statusbar=True) %}
+    <div id="link-popover" class="hidden">
+        <div class="popover-tabs">
+            <button class="btn btn-link active" disabled style="opacity: 1;">To Webpage</button>
+            <button class="btn btn-link" disabled>To Wiki Page</button>
+        </div>
+        <div class="popover-body form-container">
+            <div class="form-group">
+                <input type="url" id="link-popover-url" class="form-control input-block input-group first" placeholder='Link url'>
+            </div>
+            <div class="form-group">
+                <input type="text" id="link-popover-text" class="form-control input-block input-group" placeholder="Link text">
+            </div>
+            <a class="btn btn-link btn-insert" onclick="mdEditorInsertLink()">
+                Insert Link
+            </a>
+        </div>
+    </div>
+
+    <div id="image-popover" class="hidden">
+        <div class="popover-tabs">
+            <button class="btn btn-link active" disabled style="opacity: 1;">From Web</button>
+            <button class="btn btn-link" disabled>Upload</button>
+        </div>
+        <div class="popover-body form-container">
+            <div class="form-group">
+                <input type="url" class="form-control input-block input-group first" id="image-popover-url" placeholder='Image url'>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control input-block input-group" id="image-popover-title" placeholder="Image title (optional)">
+            </div>
+            <a class="btn btn-link btn-insert" onclick="mdEditorInsertImage()">
+                Insert Image
+            </a>
+        </div>
+    </div>
+
+    <script>
+        var mdEditorPreview = function(plainText, previewElement) {
+            clearTimeout(timer);
+            timer = setTimeout(function()  {
+                MathJax.InputJax.TeX.resetEquationNumbers();
+                $.post("/_preview",
+                    {content : plainText},
+                    function (data, textStatus) {
+                        previewElement.innerHTML = data;
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub, destId]);
+                    });
+            }, 2000);
+
+            return "Loading preview...";
+        };
+
+        var mdEditor = new SimpleMDE({
+            element: $(".md-editor")[0],
+            spellChecker: false,
+            previewRender: mdEditorPreview,
+            {% if hide_statusbar %}status: false,{% endif %}
+            toolbar: [
+                "bold",
+                "italic",
+                "|",
+                {
+                    name: "link",
+                    action: function() {},
+                    className: "fa fa-link",
+                    title: "Insert Link (Ctrl+K)"
+                },
+                {
+                    name: "image",
+                    action: function() {},
+                    className: "fa fa-picture-o",
+                    title: "Insert Image (Ctrl+Alt+I)"
+                },
+                "|",
+                "quote",
+                "unordered-list",
+                "ordered-list",
+                "|",
+                "preview",
+                {
+                    name: "guide",
+                    action: "/static/edit_help.html",
+                    className: "fa fa-question-circle",
+                    title: "Markdown Guide"
+                },
+            ]
+        });
+
+        // Setup md-editor popovers
+        $(function() {
+            $(".editor-toolbar a.fa-link").popover({
+                title: "Insert Link",
+                placement: "bottom",
+                html: true,
+                trigger: "click",
+                content: $("#link-popover").html()
+            });
+            $(".editor-toolbar a.fa-picture-o").popover({
+                title: "Insert Image",
+                placement: "bottom",
+                html: true,
+                trigger: "click",
+                content: $("#image-popover").html()
+            });
+        });
+
+        // Setup md-editor submission/insert button click events
+        var mdEditorInsertLink = function() {
+            mdEditor.options.insertTexts.link = ["", "[" + $("#link-popover-text").val() + "](" + $("#link-popover-url").val() + ")"];
+            mdEditor.drawLink(mdEditor);
+            $(".editor-toolbar a.fa-link").popover('hide');
+        }
+        var mdEditorInsertImage = function() {
+            mdEditor.options.insertTexts.image = ["", "![" + $("#image-popover-title").val() + "](" + $("#image-popover-url").val() + ")"];
+            mdEditor.drawImage(mdEditor);
+            $(".editor-toolbar a.fa-picture-o").popover('hide');
+        }
+        </script>
+{% endmacro %}

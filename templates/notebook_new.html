@@ -49,7 +49,7 @@
                     open notebooks in science <span class="fa fa-external-link" style="font-size: 0.75em">
                 </a>
             </small>
-            <small style="margin-top: -9px; border: 1px solid #eee; background: #eee; padding: 11px 14px 9px 13px;" class="text-muted pull-right">
+            <small style="margin-top: -9px; border: 1px solid #eee; background: #eee; padding: 11px 11px 9px 12px;" class="text-muted pull-right">
                 <i class="fa fa-info" style="color: rgb(51, 51, 51); font-size: 1.3em;"></i>
             </small>
 
@@ -136,5 +136,6 @@
             </div>
         {% endif %}
 
-        {% include "md_editor_setup.html" %}
+        {% import "md_editor.html" as md_editor %}
+        {{ md_editor.init() }}
 {% endblock %}

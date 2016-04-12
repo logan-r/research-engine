@@ -212,6 +212,14 @@ html, body {
 	h1, h2, h3, h4, h5, h6 {
 		margin-bottom: $spacing-md;
 		color: $base-color--prime;
+
+		.heading-action-button {
+			@extend .pull-right, .dark-link;
+
+			font-size: 0.6em;
+			position: relative;
+			top: 6px;
+		}
 	}
 
 	h1 {
@@ -225,6 +233,11 @@ html, body {
 		font-size: 1.6em;
 		padding-bottom: $spacing-sm;
 		padding-left: $spacing-xs;
+
+		&.no-underline {
+			border-bottom: none;
+			padding-bottom: 0;
+		}
 	}
 
 	h3 {
@@ -342,6 +355,58 @@ html, body {
 	margin-right: $spacing-lg;
 }
 
+.timeline-list {
+	/**
+	 * A fairly minimalistic block list - should be used for displaying users' action/feedback over
+	 * time - such as in the case of a list of comments or latest changes made in a project
+	 */
+	@extend .list-unstyled;
+	display: block;
+	margin-top: -$spacing-md;
+
+	li {
+		border-bottom: 1px solid $light-color--third;
+		display: block;
+		padding-top: $spacing-lg + 10px !important;
+		padding: $spacing-lg;
+	}
+}
+
+.user-box {
+	@extend .link;
+
+	&.user-box-two-line {
+		> img {
+			width: 32px;
+			height: 32px;
+			margin-right: $spacing-sm;
+		}
+
+		> * {
+			@extend .pull-left;
+		}
+
+		.user-box-line-one {
+			margin-top: -2px;
+			font-size: 1em;
+		}
+
+		.user-box-line-two {
+			color: $dark-color--second !important;
+			font-size: 0.7em;
+		}
+
+		&:after {
+			@extend .clearfix;
+			margin-bottom: $spacing-lg;
+		}
+	}
+
+	&:hover {
+		background: $light-color--second;
+	}
+}
+
 /** OTHER STUFF **/
 .alert {
 	border-radius: 0;
@@ -382,20 +447,6 @@ html, body {
 
 a {
 	cursor: pointer !important;
-}
-
-
-/** Project tab structuer **/
-
-
-.project-tab-comment {
-	background: #f0f0f0;
-	padding: 30px;
-	margin-top: 20px;
-}
-
-.project-tab-comment:first-child {
-	margin-top: 15px;
 }
 
 
@@ -723,4 +774,9 @@ a {
 
 .codehilite pre > span {
 	font-family: $code-font;
+}
+
+/** Bootstrap overrides **/
+.modal-dialog {
+	left: 0;
 }

@@ -382,7 +382,7 @@ ul, ol {
 ul ul, ol ul, ul ol, ol ol {
   margin-bottom: 0; }
 
-.list-unstyled {
+.list-unstyled, .timeline-list {
   padding-left: 0;
   list-style: none; }
 
@@ -462,19 +462,19 @@ blockquote small {
 blockquote small:before {
   content: '\2014 \00A0'; }
 
-blockquote.pull-right, .block-list .list-item .list-item-heading .list-item-heading-title blockquote.list-item-info, .block-list .list-item .list-item-heading blockquote.list-item-action {
+blockquote.pull-right, .content-body h1 blockquote.heading-action-button, .content-body h2 blockquote.heading-action-button, .content-body h3 blockquote.heading-action-button, .content-body h4 blockquote.heading-action-button, .content-body h5 blockquote.heading-action-button, .content-body h6 blockquote.heading-action-button, .block-list .list-item .list-item-heading .list-item-heading-title blockquote.list-item-info, .block-list .list-item .list-item-heading blockquote.list-item-action {
   padding-right: 15px;
   padding-left: 0;
   border-right: 5px solid #eee;
   border-left: 0; }
 
-blockquote.pull-right p, .block-list .list-item .list-item-heading .list-item-heading-title blockquote.list-item-info p, .block-list .list-item .list-item-heading blockquote.list-item-action p, blockquote.pull-right small, .block-list .list-item .list-item-heading .list-item-heading-title blockquote.list-item-info small, .block-list .list-item .list-item-heading blockquote.list-item-action small {
+blockquote.pull-right p, .content-body h1 blockquote.heading-action-button p, .content-body h2 blockquote.heading-action-button p, .content-body h3 blockquote.heading-action-button p, .content-body h4 blockquote.heading-action-button p, .content-body h5 blockquote.heading-action-button p, .content-body h6 blockquote.heading-action-button p, .block-list .list-item .list-item-heading .list-item-heading-title blockquote.list-item-info p, .block-list .list-item .list-item-heading blockquote.list-item-action p, blockquote.pull-right small, .content-body h1 blockquote.heading-action-button small, .content-body h2 blockquote.heading-action-button small, .content-body h3 blockquote.heading-action-button small, .content-body h4 blockquote.heading-action-button small, .content-body h5 blockquote.heading-action-button small, .content-body h6 blockquote.heading-action-button small, .block-list .list-item .list-item-heading .list-item-heading-title blockquote.list-item-info small, .block-list .list-item .list-item-heading blockquote.list-item-action small {
   text-align: right; }
 
-blockquote.pull-right small:before, .block-list .list-item .list-item-heading .list-item-heading-title blockquote.list-item-info small:before, .block-list .list-item .list-item-heading blockquote.list-item-action small:before {
+blockquote.pull-right small:before, .content-body h1 blockquote.heading-action-button small:before, .content-body h2 blockquote.heading-action-button small:before, .content-body h3 blockquote.heading-action-button small:before, .content-body h4 blockquote.heading-action-button small:before, .content-body h5 blockquote.heading-action-button small:before, .content-body h6 blockquote.heading-action-button small:before, .block-list .list-item .list-item-heading .list-item-heading-title blockquote.list-item-info small:before, .block-list .list-item .list-item-heading blockquote.list-item-action small:before {
   content: ''; }
 
-blockquote.pull-right small:after, .block-list .list-item .list-item-heading .list-item-heading-title blockquote.list-item-info small:after, .block-list .list-item .list-item-heading blockquote.list-item-action small:after {
+blockquote.pull-right small:after, .content-body h1 blockquote.heading-action-button small:after, .content-body h2 blockquote.heading-action-button small:after, .content-body h3 blockquote.heading-action-button small:after, .content-body h4 blockquote.heading-action-button small:after, .content-body h5 blockquote.heading-action-button small:after, .content-body h6 blockquote.heading-action-button small:after, .block-list .list-item .list-item-heading .list-item-heading-title blockquote.list-item-info small:after, .block-list .list-item .list-item-heading blockquote.list-item-action small:after {
   content: '\00A0 \2014'; }
 
 q:before, q:after, blockquote:before, blockquote:after {
@@ -2292,7 +2292,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box; }
 
-.dropdown-menu.pull-right, .block-list .list-item .list-item-heading .list-item-heading-title .dropdown-menu.list-item-info, .block-list .list-item .list-item-heading .dropdown-menu.list-item-action {
+.dropdown-menu.pull-right, .content-body h1 .dropdown-menu.heading-action-button, .content-body h2 .dropdown-menu.heading-action-button, .content-body h3 .dropdown-menu.heading-action-button, .content-body h4 .dropdown-menu.heading-action-button, .content-body h5 .dropdown-menu.heading-action-button, .content-body h6 .dropdown-menu.heading-action-button, .block-list .list-item .list-item-heading .list-item-heading-title .dropdown-menu.list-item-info, .block-list .list-item .list-item-heading .dropdown-menu.list-item-action {
   right: 0;
   left: auto; }
 
@@ -2353,7 +2353,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   left: 0;
   z-index: 990; }
 
-.pull-right > .dropdown-menu, .block-list .list-item .list-item-heading .list-item-heading-title .list-item-info > .dropdown-menu, .block-list .list-item .list-item-heading .list-item-action > .dropdown-menu {
+.pull-right > .dropdown-menu, .content-body h1 .heading-action-button > .dropdown-menu, .content-body h2 .heading-action-button > .dropdown-menu, .content-body h3 .heading-action-button > .dropdown-menu, .content-body h4 .heading-action-button > .dropdown-menu, .content-body h5 .heading-action-button > .dropdown-menu, .content-body h6 .heading-action-button > .dropdown-menu, .block-list .list-item .list-item-heading .list-item-heading-title .list-item-info > .dropdown-menu, .block-list .list-item .list-item-heading .list-item-action > .dropdown-menu {
   right: 0;
   left: auto; }
 
@@ -3085,7 +3085,7 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0; }
 
-.navbar-nav.pull-right > li > .dropdown-menu, .block-list .list-item .list-item-heading .list-item-heading-title .navbar-nav.list-item-info > li > .dropdown-menu, .block-list .list-item .list-item-heading .navbar-nav.list-item-action > li > .dropdown-menu, .navbar-nav > li > .dropdown-menu.pull-right, .block-list .list-item .list-item-heading .list-item-heading-title .navbar-nav > li > .dropdown-menu.list-item-info, .block-list .list-item .list-item-heading .navbar-nav > li > .dropdown-menu.list-item-action {
+.navbar-nav.pull-right > li > .dropdown-menu, .content-body h1 .navbar-nav.heading-action-button > li > .dropdown-menu, .content-body h2 .navbar-nav.heading-action-button > li > .dropdown-menu, .content-body h3 .navbar-nav.heading-action-button > li > .dropdown-menu, .content-body h4 .navbar-nav.heading-action-button > li > .dropdown-menu, .content-body h5 .navbar-nav.heading-action-button > li > .dropdown-menu, .content-body h6 .navbar-nav.heading-action-button > li > .dropdown-menu, .block-list .list-item .list-item-heading .list-item-heading-title .navbar-nav.list-item-info > li > .dropdown-menu, .block-list .list-item .list-item-heading .navbar-nav.list-item-action > li > .dropdown-menu, .navbar-nav > li > .dropdown-menu.pull-right, .content-body h1 .navbar-nav > li > .dropdown-menu.heading-action-button, .content-body h2 .navbar-nav > li > .dropdown-menu.heading-action-button, .content-body h3 .navbar-nav > li > .dropdown-menu.heading-action-button, .content-body h4 .navbar-nav > li > .dropdown-menu.heading-action-button, .content-body h5 .navbar-nav > li > .dropdown-menu.heading-action-button, .content-body h6 .navbar-nav > li > .dropdown-menu.heading-action-button, .block-list .list-item .list-item-heading .list-item-heading-title .navbar-nav > li > .dropdown-menu.list-item-info, .block-list .list-item .list-item-heading .navbar-nav > li > .dropdown-menu.list-item-action {
   right: 0;
   left: auto; }
 
@@ -3720,10 +3720,10 @@ a.thumbnail:hover, a.thumbnail:focus {
 .media-heading {
   margin: 0 0 5px; }
 
-.media > .pull-left {
+.media > .pull-left, .user-box.user-box-two-line.media > * {
   margin-right: 10px; }
 
-.media > .pull-right, .block-list .list-item .list-item-heading .list-item-heading-title .media > .list-item-info, .block-list .list-item .list-item-heading .media > .list-item-action {
+.media > .pull-right, .content-body h1 .media > .heading-action-button, .content-body h2 .media > .heading-action-button, .content-body h3 .media > .heading-action-button, .content-body h4 .media > .heading-action-button, .content-body h5 .media > .heading-action-button, .content-body h6 .media > .heading-action-button, .block-list .list-item .list-item-heading .list-item-heading-title .media > .list-item-info, .block-list .list-item .list-item-heading .media > .list-item-action {
   margin-left: 10px; }
 
 .media-list {
@@ -4504,17 +4504,17 @@ body.modal-open, .modal-open .navbar-fixed-top, .modal-open .navbar-fixed-bottom
 
   .carousel-indicators {
     bottom: 20px; } }
-.clearfix:before, .clearfix:after {
+.clearfix:before, .clearfix:after, .user-box.user-box-two-line:after {
   display: table;
   content: " "; }
 
-.clearfix:after {
+.clearfix:after, .user-box.user-box-two-line:after {
   clear: both; }
 
-.pull-right, .block-list .list-item .list-item-heading .list-item-heading-title .list-item-info, .block-list .list-item .list-item-heading .list-item-action {
+.pull-right, .content-body h1 .heading-action-button, .content-body h2 .heading-action-button, .content-body h3 .heading-action-button, .content-body h4 .heading-action-button, .content-body h5 .heading-action-button, .content-body h6 .heading-action-button, .block-list .list-item .list-item-heading .list-item-heading-title .list-item-info, .block-list .list-item .list-item-heading .list-item-action {
   float: right !important; }
 
-.pull-left {
+.pull-left, .user-box.user-box-two-line > * {
   float: left !important; }
 
 .hide {
@@ -5043,7 +5043,7 @@ th.visible-print, td.visible-print {
   padding-bottom: 0; }
 
 /** BASIC CLICKABLE ACTION LINK/BUTTON TYPES */
-.link, a {
+.link, a, .user-box {
   /**
    * Abstract style for text that normally possess a blue color that changes to a lighter blue on mouse hover/click
    */
@@ -5053,10 +5053,10 @@ th.visible-print, td.visible-print {
   -ms-transition: color 0.6s ease-out;
   transition: color 0.6s ease-out;
   cursor: pointer; }
-  .link:hover, a:hover, .link:focus, a:focus, .link:active, a:active {
+  .link:hover, a:hover, .user-box:hover, .link:focus, a:focus, .user-box:focus, .link:active, a:active, .user-box:active {
     color: #4f83b0; }
 
-.dark-link, .content-header .actions a, .content-action-bar a:not(.unstyled), .block-list .list-item .list-item-heading .list-item-action, .info-footer a, .card-actions a, .btn-muted {
+.dark-link, .content-header .actions a, .content-action-bar a:not(.unstyled), .content-body h1 .heading-action-button, .content-body h2 .heading-action-button, .content-body h3 .heading-action-button, .content-body h4 .heading-action-button, .content-body h5 .heading-action-button, .content-body h6 .heading-action-button, .block-list .list-item .list-item-heading .list-item-action, .info-footer a, .card-actions a, .btn-muted {
   /**
    * Like .link, but posssess grey text that changes to black on mouse hover/click
    */
@@ -5067,7 +5067,7 @@ th.visible-print, td.visible-print {
   transition: color 0.6s ease-out;
   cursor: pointer;
   text-decoration: none; }
-  .dark-link:hover, .content-header .actions a:hover, .content-action-bar a:hover:not(.unstyled), .block-list .list-item .list-item-heading .list-item-action:hover, .info-footer a:hover, .card-actions a:hover, .btn-muted:hover, .dark-link:focus, .content-header .actions a:focus, .content-action-bar a:focus:not(.unstyled), .block-list .list-item .list-item-heading .list-item-action:focus, .info-footer a:focus, .card-actions a:focus, .btn-muted:focus, .dark-link:active, .content-header .actions a:active, .content-action-bar a:active:not(.unstyled), .block-list .list-item .list-item-heading .list-item-action:active, .info-footer a:active, .card-actions a:active, .btn-muted:active {
+  .dark-link:hover, .content-header .actions a:hover, .content-action-bar a:hover:not(.unstyled), .content-body h1 .heading-action-button:hover, .content-body h2 .heading-action-button:hover, .content-body h3 .heading-action-button:hover, .content-body h4 .heading-action-button:hover, .content-body h5 .heading-action-button:hover, .content-body h6 .heading-action-button:hover, .block-list .list-item .list-item-heading .list-item-action:hover, .info-footer a:hover, .card-actions a:hover, .btn-muted:hover, .dark-link:focus, .content-header .actions a:focus, .content-action-bar a:focus:not(.unstyled), .content-body h1 .heading-action-button:focus, .content-body h2 .heading-action-button:focus, .content-body h3 .heading-action-button:focus, .content-body h4 .heading-action-button:focus, .content-body h5 .heading-action-button:focus, .content-body h6 .heading-action-button:focus, .block-list .list-item .list-item-heading .list-item-action:focus, .info-footer a:focus, .card-actions a:focus, .btn-muted:focus, .dark-link:active, .content-header .actions a:active, .content-action-bar a:active:not(.unstyled), .content-body h1 .heading-action-button:active, .content-body h2 .heading-action-button:active, .content-body h3 .heading-action-button:active, .content-body h4 .heading-action-button:active, .content-body h5 .heading-action-button:active, .content-body h6 .heading-action-button:active, .block-list .list-item .list-item-heading .list-item-action:active, .info-footer a:active, .card-actions a:active, .btn-muted:active {
     color: #333333; }
 
 .btn {
@@ -5171,7 +5171,7 @@ html, body {
     .content-action-bar a:not(.unstyled).active {
       color: #506C6A !important;
       text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3); }
-  .content-action-bar *.pull-right a:not(.unstyled), .content-action-bar .block-list .list-item .list-item-heading .list-item-heading-title *.list-item-info a:not(.unstyled), .block-list .list-item .list-item-heading .list-item-heading-title .content-action-bar *.list-item-info a:not(.unstyled), .content-action-bar .block-list .list-item .list-item-heading *.list-item-action a:not(.unstyled), .block-list .list-item .list-item-heading .content-action-bar *.list-item-action a:not(.unstyled), .content-action-bar a:not(.unstyled).pull-right, .content-action-bar .block-list .list-item .list-item-heading .list-item-heading-title a.list-item-info:not(.unstyled), .block-list .list-item .list-item-heading .list-item-heading-title .content-action-bar a.list-item-info:not(.unstyled), .content-action-bar .block-list .list-item .list-item-heading a.list-item-action:not(.unstyled), .block-list .list-item .list-item-heading .content-action-bar a.list-item-action:not(.unstyled) {
+  .content-action-bar *.pull-right a:not(.unstyled), .content-action-bar .content-body h1 *.heading-action-button a:not(.unstyled), .content-body h1 .content-action-bar *.heading-action-button a:not(.unstyled), .content-action-bar .content-body h2 *.heading-action-button a:not(.unstyled), .content-body h2 .content-action-bar *.heading-action-button a:not(.unstyled), .content-action-bar .content-body h3 *.heading-action-button a:not(.unstyled), .content-body h3 .content-action-bar *.heading-action-button a:not(.unstyled), .content-action-bar .content-body h4 *.heading-action-button a:not(.unstyled), .content-body h4 .content-action-bar *.heading-action-button a:not(.unstyled), .content-action-bar .content-body h5 *.heading-action-button a:not(.unstyled), .content-body h5 .content-action-bar *.heading-action-button a:not(.unstyled), .content-action-bar .content-body h6 *.heading-action-button a:not(.unstyled), .content-body h6 .content-action-bar *.heading-action-button a:not(.unstyled), .content-action-bar .block-list .list-item .list-item-heading .list-item-heading-title *.list-item-info a:not(.unstyled), .block-list .list-item .list-item-heading .list-item-heading-title .content-action-bar *.list-item-info a:not(.unstyled), .content-action-bar .block-list .list-item .list-item-heading *.list-item-action a:not(.unstyled), .block-list .list-item .list-item-heading .content-action-bar *.list-item-action a:not(.unstyled), .content-action-bar a:not(.unstyled).pull-right, .content-action-bar .content-body h1 a.heading-action-button:not(.unstyled), .content-body h1 .content-action-bar a.heading-action-button:not(.unstyled), .content-action-bar .content-body h2 a.heading-action-button:not(.unstyled), .content-body h2 .content-action-bar a.heading-action-button:not(.unstyled), .content-action-bar .content-body h3 a.heading-action-button:not(.unstyled), .content-body h3 .content-action-bar a.heading-action-button:not(.unstyled), .content-action-bar .content-body h4 a.heading-action-button:not(.unstyled), .content-body h4 .content-action-bar a.heading-action-button:not(.unstyled), .content-action-bar .content-body h5 a.heading-action-button:not(.unstyled), .content-body h5 .content-action-bar a.heading-action-button:not(.unstyled), .content-action-bar .content-body h6 a.heading-action-button:not(.unstyled), .content-body h6 .content-action-bar a.heading-action-button:not(.unstyled), .content-action-bar .block-list .list-item .list-item-heading .list-item-heading-title a.list-item-info:not(.unstyled), .block-list .list-item .list-item-heading .list-item-heading-title .content-action-bar a.list-item-info:not(.unstyled), .content-action-bar .block-list .list-item .list-item-heading a.list-item-action:not(.unstyled), .block-list .list-item .list-item-heading .content-action-bar a.list-item-action:not(.unstyled) {
     margin-left: 0;
     margin-right: 16px; }
 
@@ -5192,6 +5192,10 @@ html, body {
 .content-body h1, .content-body h2, .content-body h3, .content-body h4, .content-body h5, .content-body h6 {
   margin-bottom: 12px;
   color: #506C6A; }
+  .content-body h1 .heading-action-button, .content-body h2 .heading-action-button, .content-body h3 .heading-action-button, .content-body h4 .heading-action-button, .content-body h5 .heading-action-button, .content-body h6 .heading-action-button {
+    font-size: 0.6em;
+    position: relative;
+    top: 6px; }
 .content-body h1 {
   font-weight: bold;
   font-size: 1.6em;
@@ -5201,6 +5205,9 @@ html, body {
   font-size: 1.6em;
   padding-bottom: 8px;
   padding-left: 4px; }
+  .content-body h2.no-underline {
+    border-bottom: none;
+    padding-bottom: 0; }
 .content-body h3 {
   font-size: 1.4em; }
 .content-body h4 {
@@ -5280,6 +5287,34 @@ html, body {
 .card-actions a {
   margin-right: 16px; }
 
+.timeline-list {
+  /**
+   * A fairly minimalistic block list - should be used for displaying users' action/feedback over
+   * time - such as in the case of a list of comments or latest changes made in a project
+   */
+  display: block;
+  margin-top: -12px; }
+  .timeline-list li {
+    border-bottom: 1px solid #DDDDDD;
+    display: block;
+    padding-top: 26px !important;
+    padding: 16px; }
+
+.user-box.user-box-two-line > img {
+  width: 32px;
+  height: 32px;
+  margin-right: 8px; }
+.user-box.user-box-two-line .user-box-line-one {
+  margin-top: -2px;
+  font-size: 1em; }
+.user-box.user-box-two-line .user-box-line-two {
+  color: #777777 !important;
+  font-size: 0.7em; }
+.user-box.user-box-two-line:after {
+  margin-bottom: 16px; }
+.user-box:hover {
+  background: #EEEEEE; }
+
 /** OTHER STUFF **/
 .alert {
   border-radius: 0; }
@@ -5311,15 +5346,6 @@ html, body {
 
 a {
   cursor: pointer !important; }
-
-/** Project tab structuer **/
-.project-tab-comment {
-  background: #f0f0f0;
-  padding: 30px;
-  margin-top: 20px; }
-
-.project-tab-comment:first-child {
-  margin-top: 15px; }
 
 /** Specialized Elements **/
 .icon-btn {
@@ -5555,5 +5581,9 @@ a {
 
 .codehilite pre > span {
   font-family: "Roboto Mono", Consolas, monospace; }
+
+/** Bootstrap overrides **/
+.modal-dialog {
+  left: 0; }
 
 /*# sourceMappingURL=style.css.map */

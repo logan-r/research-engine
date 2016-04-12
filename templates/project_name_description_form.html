@@ -47,5 +47,6 @@
         </section>
     </form>
 
-    {% include "md_editor_setup.html" %}
+    {% import "md_editor.html" as md_editor %}
+    {{ md_editor.init(hide_statusbar = False) }}
 {% endblock %}
