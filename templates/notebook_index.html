@@ -9,9 +9,9 @@
       <small class="text-muted">{{note.date.strftime("%d %b %Y")}}</small>
       <a href="/{{project.key.integer_id()}}/notebooks/{{notebook.key.integer_id()}}/{{note.key.integer_id()}}">{{note.title}}</a></li>
     {% endfor %}
-    {{% if len(notes) == 0 %}}
+    {% if notes == [] %}
         There are no notes in this notebook yet.
-    {{% endif %}}
+    {% endif %}
   </ul>
 </div>
 <div class="modal-footer">
