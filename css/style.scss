@@ -596,7 +596,9 @@ a {
 	margin-bottom: 0;
 	border-bottom: none;
 	background: $base-color--prime;
-	box-shadow: inset 0 -7px 8px -7px rgba(0, 0, 0, 0.4);
+	box-shadow: inset 0 -7px 8px -7px rgba(0, 0, 0, 0.4),
+				inset 0  7px 8px -7px rgba(0, 0, 0, 0.4);
+	border-bottom: 1px solid $dark-color--prime;
 
 	.navbar-brand {
 		font-family: $logo-font;
