@@ -42,12 +42,13 @@
                 {% for a in authors %}
                     <li>
                         <a href="/{{a.username}}">
-                            <img src="{{a.get_profile_image(20)}}" aria-hidden="true"/>
+                            <img src="{{a.get_profile_image(24)}}" aria-hidden="true"/>
                             {{a.username.capitalize()}}
                         </a>
                     </li>
                 {% endfor %}
             </ul>
+            <hr class="heading-bottom-bar">
         </section>
 
         <section class="content-section">

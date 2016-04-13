@@ -30,20 +30,18 @@
         </section>
 
         <section class="content-section">
-            <div class="title title-muted">
-                <span class="fa fa-calendar"></span> Created on {{note.date.strftime("%d %b %Y")}}
+            <div class="title title-muted info-footer">
+                <span class="info-blurb">
+                    <span class="fa fa-calendar"></span> Created on {{note.date.strftime("%d %b %Y")}}
+                </span>
+                <span class="info-blurb">
+                    <span class="fa fa-user"></span>
+                    Written by
+                    <a class="link" href="/{{note.get_author().username}}">
+                        {{note.get_author().username}}
+                    </a>
+                </span>
             </div>
-        </section>
-
-        <section class="content-section">
-            <h2>Authors</h2>
-            <div class="user-box-list">
-                <a class="user-box user-box-no-bottom-spacing" href="/{{note.get_author().username}}">
-                    <img src="{{note.get_author().get_profile_image(32)}}" aria-hidden="true"/>
-                    <div class="user-box-line">{{note.get_author().username}}</div>
-                </a>
-            </div>
-            <hr class="heading-bottom-bar">
         </section>
 
         <section class="content-section" id="comments">
