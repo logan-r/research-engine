@@ -175,6 +175,14 @@ html, body {
 		margin-left: 0;
 		margin-right: $spacing-lg;
 	}
+
+	.caret {
+		border-top-color: $dark-color--second;
+	}
+
+	a:hover .caret, a:focus .caret, a:active .caret {
+		border-top-color: $dark-color--prime;
+	}
 }
 
 .content-body {

@@ -27,18 +27,6 @@
         {% endif %}
     </h2>
 
-    <div class="dropdown pull-right" style="margin-top:5px;">
-      <button class="dropdown-toggle btn btn-link" type="button" id="dropdownPrint"
-    	  style="color:#777;font-weight:bold;"
-    	  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        <span class="fa fa-print"></span> Printable version
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownPrint">
-        <li><a href="/{{project.key.integer_id()}}/notebooks/{{notebook.key.integer_id()}}/_utils/html_export?d=asc">Ascending date</a></li>
-        <li><a href="/{{project.key.integer_id()}}/notebooks/{{notebook.key.integer_id()}}/_utils/html_export?d=desc">Descending date</a></li>
-      </ul>
-    </div>
     <div class="content-action-bar">
         {% if writable_p %}
             <a href="/{{project.key.integer_id()}}/notebooks/{{notebook.key.integer_id()}}/new_note">
@@ -48,6 +36,33 @@
         <a href="/{{project.key.integer_id()}}/notebooks/{{notebook.key.integer_id()}}/_utils/index" data-toggle="modal" data-target="#nbIndexModal">
             Notebook index
         </a>
+        <div class="pull-right dropdown">
+            <a id="exportLabel" role="button" data-toggle="dropdown" data-target="#">
+                Export/print <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="exportLabel">
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" target="_blank" href="/{{project.key.integer_id()}}/notebooks/{{notebook.key.integer_id()}}/_utils/html_export?d=asc" class="unstyled">
+                        as HTML (Ascending dates)
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" target="_blank" href="/{{project.key.integer_id()}}/notebooks/{{notebook.key.integer_id()}}/_utils/html_export?d=desc" class="unstyled">
+                        as HTML (Descending dates)
+                    </a>
+                </li>
+                <li role="presentation" class="disabled">
+                    <a role="menuitem" tabindex="-1" href="#" class="unstyled">
+                        as PDF (coming soon)
+                    </a>
+                </li>
+                <li role="presentation" class="disabled">
+                    <a role="menuitem" tabindex="-1" href="#" class="unstyled">
+                        as Markdown (coming soon)
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <div class="content-body">
