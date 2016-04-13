@@ -6,13 +6,17 @@
 
 {% block p_content %}
     <h2 class="content-header no-content-action-bar">
-        {% if action=="Edit" %}
-            <div class="parent-link">
+        <div class="parent-link">
+            {% if action=="Edit" %}
                 <a href="/{{project.key.integer_id()}}/notebooks/{{notebook.key.integer_id()}}">
                     {{notebook.name | safe}}
                 </a>
-            </div>
-        {% endif %}
+            {% else %}
+                <a href="/{{project.key.integer_id()}}/notebooks/">
+                    Notebooks
+                </a>
+            {% endif %}
+        </div>
 
         {% if action=="New" %}
             New Notebook
