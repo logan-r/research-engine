@@ -202,6 +202,11 @@ html, body {
 
 	.title {
 		@extend .secondary-header;
+
+		.fa {
+			margin-right: $spacing-xxs;
+			font-size: 1.2em;
+		}
 	}
 
 	.title.title-muted {
@@ -246,6 +251,23 @@ html, body {
 
 	h4 {
 		font-size: 1.2em;
+	}
+
+	.heading-underlined {
+		border-bottom: 1px solid $light-color--third;
+		padding-bottom: $spacing-sm;
+
+		&h4 {
+			padding-bottom: $spacing-xs;
+		}
+	}
+
+	hr.heading-bottom-bar {
+		/** A bar to use to sandwich content between an underlined heading and this **/
+		margin-top: $spacing-md;
+		margin-bottom: 0;
+		background: $light-color--third !important;
+		border-color: $light-color--third !important;
 	}
 }
 
@@ -375,17 +397,23 @@ html, body {
 .user-box {
 	@extend .link;
 
+	> img {
+		width: 32px;
+		height: 32px;
+		margin-right: $spacing-sm;
+	}
+
+	> * {
+		@extend .pull-left;
+	}
+
+	&:not(.user-box-two-line) .user-box-line {
+		position: relative;
+		top: 4px;
+		font-size: 1.1em;
+	}
+
 	&.user-box-two-line {
-		> img {
-			width: 32px;
-			height: 32px;
-			margin-right: $spacing-sm;
-		}
-
-		> * {
-			@extend .pull-left;
-		}
-
 		.user-box-line-one {
 			margin-top: -2px;
 			font-size: 1em;
@@ -395,15 +423,33 @@ html, body {
 			color: $dark-color--second !important;
 			font-size: 0.7em;
 		}
+	}
 
-		&:after {
-			@extend .clearfix;
-			margin-bottom: $spacing-lg;
-		}
+	&:after {
+		@extend .clearfix;
+	}
+
+	&:not(.user-box-no-bottom-spacing):after {
+		margin-bottom: $spacing-lg;
 	}
 
 	&:hover {
 		background: $light-color--second;
+	}
+}
+
+.user-box-list {
+	/**
+	 * A horizontal list of user boxes
+	 */
+	display: block;
+
+	.user-box:first-child img {
+		margin-left: $spacing-xs;
+	}
+
+	.user-box img {
+		margin-left: $spacing-md;
 	}
 }
 

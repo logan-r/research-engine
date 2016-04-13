@@ -26,13 +26,24 @@
 
     <div class="content-body">
         <section class="content-section">
-            <div class="title title-muted">
-                On {{note.date.strftime("%d %b %Y")}},
-                <a href="/{{note.get_author().username}}" class="unstyled">{{note.get_author().username.capitalize()}}</a>
-                wrote:
-            </div>
-            <br>
             {{note.content | md | safe}}
+        </section>
+
+        <section class="content-section">
+            <div class="title title-muted">
+                <span class="fa fa-calendar"></span> Created on {{note.date.strftime("%d %b %Y")}}
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Authors</h2>
+            <div class="user-box-list">
+                <a class="user-box user-box-no-bottom-spacing" href="/{{note.get_author().username}}">
+                    <img src="{{note.get_author().get_profile_image(32)}}" aria-hidden="true"/>
+                    <div class="user-box-line">{{note.get_author().username}}</div>
+                </a>
+            </div>
+            <hr class="heading-bottom-bar">
         </section>
 
         <section class="content-section" id="comments">
@@ -81,7 +92,7 @@
                             <a class="user-box user-box-two-line" href="/{{c.author.get().username}}">
                                 <img src="{{c.author.get().get_profile_image(32)}}" aria-hidden="true"/>
                                 <div>
-                                    <div class="user-box-line-one">andres</div>
+                                    <div class="user-box-line-one">{{c.author.get().username}}</div>
                                     <div class="user-box-line-two">{{c.date.strftime("%d %b %Y")}}</div>
                                 </div>
                             </a>

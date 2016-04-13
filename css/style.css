@@ -3720,7 +3720,7 @@ a.thumbnail:hover, a.thumbnail:focus {
 .media-heading {
   margin: 0 0 5px; }
 
-.media > .pull-left, .user-box.user-box-two-line.media > * {
+.media > .pull-left, .user-box.media > * {
   margin-right: 10px; }
 
 .media > .pull-right, .content-body h1 .media > .heading-action-button, .content-body h2 .media > .heading-action-button, .content-body h3 .media > .heading-action-button, .content-body h4 .media > .heading-action-button, .content-body h5 .media > .heading-action-button, .content-body h6 .media > .heading-action-button, .block-list .list-item .list-item-heading .list-item-heading-title .media > .list-item-info, .block-list .list-item .list-item-heading .media > .list-item-action {
@@ -4504,17 +4504,17 @@ body.modal-open, .modal-open .navbar-fixed-top, .modal-open .navbar-fixed-bottom
 
   .carousel-indicators {
     bottom: 20px; } }
-.clearfix:before, .clearfix:after, .user-box.user-box-two-line:after {
+.clearfix:before, .clearfix:after, .user-box:after {
   display: table;
   content: " "; }
 
-.clearfix:after, .user-box.user-box-two-line:after {
+.clearfix:after, .user-box:after {
   clear: both; }
 
 .pull-right, .content-body h1 .heading-action-button, .content-body h2 .heading-action-button, .content-body h3 .heading-action-button, .content-body h4 .heading-action-button, .content-body h5 .heading-action-button, .content-body h6 .heading-action-button, .block-list .list-item .list-item-heading .list-item-heading-title .list-item-info, .block-list .list-item .list-item-heading .list-item-action {
   float: right !important; }
 
-.pull-left, .user-box.user-box-two-line > * {
+.pull-left, .user-box > * {
   float: left !important; }
 
 .hide {
@@ -5186,6 +5186,9 @@ html, body {
     margin-top: 16px; }
   .content-body.content-body-form .content-section .title {
     line-height: initial; }
+.content-body .title .fa {
+  margin-right: 2px;
+  font-size: 1.2em; }
 .content-body .title.title-muted {
   color: #777777;
   font-weight: normal; }
@@ -5212,6 +5215,17 @@ html, body {
   font-size: 1.4em; }
 .content-body h4 {
   font-size: 1.2em; }
+.content-body .heading-underlined {
+  border-bottom: 1px solid #DDDDDD;
+  padding-bottom: 8px; }
+  .content-body .heading-underlinedh4 {
+    padding-bottom: 4px; }
+.content-body hr.heading-bottom-bar {
+  /** A bar to use to sandwich content between an underlined heading and this **/
+  margin-top: 12px;
+  margin-bottom: 0;
+  background: #DDDDDD !important;
+  border-color: #DDDDDD !important; }
 
 /** COMPLEX ELEMENTS **/
 .block-list .list-item {
@@ -5300,20 +5314,34 @@ html, body {
     padding-top: 26px !important;
     padding: 16px; }
 
-.user-box.user-box-two-line > img {
+.user-box > img {
   width: 32px;
   height: 32px;
   margin-right: 8px; }
+.user-box:not(.user-box-two-line) .user-box-line {
+  position: relative;
+  top: 4px;
+  font-size: 1.1em; }
 .user-box.user-box-two-line .user-box-line-one {
   margin-top: -2px;
   font-size: 1em; }
 .user-box.user-box-two-line .user-box-line-two {
   color: #777777 !important;
   font-size: 0.7em; }
-.user-box.user-box-two-line:after {
+.user-box:not(.user-box-no-bottom-spacing):after {
   margin-bottom: 16px; }
 .user-box:hover {
   background: #EEEEEE; }
+
+.user-box-list {
+  /**
+   * A horizontal list of user boxes
+   */
+  display: block; }
+  .user-box-list .user-box:first-child img {
+    margin-left: 4px; }
+  .user-box-list .user-box img {
+    margin-left: 12px; }
 
 /** OTHER STUFF **/
 .alert {
