@@ -5,12 +5,17 @@
     <title>{{project.name}}</title>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript">
-      MathJax.Hub.Config({
-      "tex2jax": { inlineMath: [ [ '$', '$' ] ], processEscapes: true },
-      TeX: {equationNumbers: {autoNumber: "AMS"} }
-      });
+        MathJax.Hub.Config({
+            "tex2jax": { inlineMath: [ [ '$', '$' ] ], processEscapes: true },
+            TeX: {equationNumbers: {autoNumber: "AMS"} }
+        });
     </script>
-    <style class="text/css">img{max-width:100%;height:auto;}</style>
+    <style class="text/css">
+        img{
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
     {% block p_head %}
     {% endblock %}
 {% endblock %}
@@ -28,13 +33,13 @@
                     <i class="fa fa-pencil-square-o"></i><br>
                     Notebooks
                 </a><!--
-                --><a href="/{{project.key.integer_id()}}/wiki/page/Main_Page" class="{{wiki_tab_class}} icon-btn">
-                    <i class="fa fa-book"></i><br>
-                    Wiki
-                </a><!--
                 --><a href="/{{project.key.integer_id()}}/writings" class="{{writings_tab_class}} icon-btn">
                     <i class="fa fa-file-text-o"></i><br>
                     Writings
+                </a><!--
+                --><a href="/{{project.key.integer_id()}}/wiki/page/Main_Page" class="{{wiki_tab_class}} icon-btn">
+                    <i class="fa fa-book"></i><br>
+                    Wiki
                 </a><!--
                 --><a href="/{{project.key.integer_id()}}/forum" class="{{forum_tab_class}} icon-btn">
                     <i class="fa fa-comments"></i><br>
