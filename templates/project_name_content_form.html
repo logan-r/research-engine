@@ -1,0 +1,53 @@
+{% extends "project_base.html" %}
+
+{% block p_content %}
+    <h2 class="content-header no-content-action-bar">
+        {% if parent_link_text %}
+            <div class="parent-link">
+                <a href="{{parent_link_url}}">
+                    {{parent_link_text | safe}}
+                </a>
+            </div>
+        {% endif %}
+
+        {{title | safe}}
+        <a href="#project-menu" class="skiptocontent">Skip to project menu</a>
+
+        <div class="actions">
+            <a onclick="$('#project-name-description-form').submit();" title="{{submit_button_text}}">
+                <span class="fa fa-floppy-o"></span>
+            </a>
+        </div>
+    </h3>
+
+    {% if error_message %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{error_message | safe}}
+        </div>
+    {% endif %}
+
+    <form method="post" role="form" id="project-name-description-form" class="content-body content-body-form">
+        <!-- Name input -->
+        <section class="form-group {{nClass}} content-section">
+            <label for="name" class="title">{{name_title}}</label>
+            <input type="text" id="name" name="name" class="form-control input-lg" value="{{name_value}}" autofocus {% if disabled_p %}disabled{% endif %}/>
+        </section>
+
+        <!-- Description input -->
+        <section class="form-group {{cClass}} content-section">
+            <label for="md-editor-{{title | safe | nowhitespace}}" class="title">{{content_title}}</label>
+            <textarea id='md-editor-{{title | safe | nowhitespace}}' name="content" class="md-editor" {% if disabled_p %}disabled{% endif %}>{{content_value}}</textarea>
+        </section>
+
+        <!-- Submit button -->
+        <section class="form-group content-section">
+            <button type="submit" class="btn btn-success" {% if visitor_p %}disabled="disabled"{% endif %}>{{submit_button_text}}</button>
+        </section>
+    </form>
+
+    {% import "md_editor.html" as md_editor %}
+    {{ md_editor.init(hide_statusbar = False) }}
+{% endblock %}

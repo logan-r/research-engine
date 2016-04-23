@@ -257,7 +257,7 @@ class NewNotePage(NotebookPage):
                 "content_value" : "",
                 "submit_button_text": "Create note"
               }
-        self.render("project_name_description_form.html", project = project, **kw)
+        self.render("project_name_content_form.html", project = project, **kw)
 
     def post(self, projectid, nbid):
         user = self.get_login_user()
@@ -290,15 +290,17 @@ class NewNotePage(NotebookPage):
         if have_error:
             parent_url = "/%s/notebooks" % (project.key.integer_id())
             kw = {
-                    "title" : "New note",
-                    "parent_link_text": notebook.name,
-                    "parent_link_url": parent_url,
-                    "name_placeholder" : "Title of the note",
-                    "name_value" : n_title,
-                    "content_value" : n_content,
-                    "error_message" : error_message
+                      "title" : "New note",
+                      "parent_link_text": notebook.name,
+                      "parent_link_url": parent_url,
+                      "name_title" : "Note Title",
+                      "name_value" : n_title,
+                      "content_title" : "Note Content",
+                      "content_value" : n_content,
+                      "submit_button_text": "Create note",
+                      "error_message" : error_message
                   }
-            self.render("project_name_description_form.html", project = project, **kw)
+            self.render("project_name_content_form.html", project = project, **kw)
         else:
             new_note = NotebookNotes(title = n_title, content = n_content, parent = notebook.key, author = user.key)
             self.put_and_report(new_note, user, project, notebook)
@@ -493,7 +495,7 @@ class EditNotePage(NotebookPage):
             "content_value" : note.content,
             "submit_button_text": "Save note"
         }
-        self.render("project_name_description_form.html", project = project, **kw)
+        self.render("project_name_content_form.html", project = project, **kw)
 
     def post(self, projectid, nbid, noteid):
         user = self.get_login_user()
@@ -533,15 +535,17 @@ class EditNotePage(NotebookPage):
             error_message += "You need to write some content before saving this note. "
         if have_error:
             kw = {
-                    "title" : "Edit note",
-                    "parent_link_text": notebook.name,
-                    "parent_link_url": nb_url,
-                    "name_placeholder" : "Title of the note",
-                    "name_value" : n_title,
-                    "content_value" : n_content,
-                    "error_message" : error_message
+                      "title" : "Edit note",
+                      "parent_link_text": notebook.name,
+                      "parent_link_url": parent_url,
+                      "name_title" : "Note Title",
+                      "name_value" : n_title,
+                      "content_title" : "Note Content",
+                      "content_value" : n_content,
+                      "submit_button_text": "Save note",
+                      "error_message" : error_message
                   }
-            self.render("project_name_description_form.html", project = project, **kw)
+            self.render("project_name_content_form.html", project = project, **kw)
         else:
             if (note.title != n_title) or (note.content != n_content):
                 note.title = n_title

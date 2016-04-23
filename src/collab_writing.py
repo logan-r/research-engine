@@ -112,16 +112,17 @@ class NewWritingPage(WritingPage):
         if not project.user_is_author(user):
             self.redirect("/%s/writings" % projetid)
             return
-        kw = {"title" : "New collaborative writing",
-              "name_placeholder" : "Title of the new writing",
-              "content_placeholder" : "Description of the new writing",
-              "submit_button_text" : "Create writing",
-              "cancel_url" : "/%s/writings" % projectid,
-              "breadcrumb" : '<li class="active">Collaborative writings</li>',
-              "markdown_p" : True,
-              "open_choice_p" : True,
-              "open_p" : project.default_open_p}
-        self.render("project_form_2.html", project = project, **kw)
+        parent_url = "/%s/writings" % project.key.integer_id()
+        kw = {
+                  "title" : "New collaborative writing",
+                  "parent_link_text": "Writings",
+                  "parent_link_url": parent_url,
+                  "name_title" : "Title of new writing",
+                  "visiblity_title": "Visiblity",
+                  "content_title" : "Description of new writing",
+                  "submit_button_text": "Create writing"
+              }
+        self.render("project_name_content_visible_form.html", project = project, **kw)
 
     def post(self, projectid):
         user = self.get_login_user()
@@ -137,10 +138,20 @@ class NewWritingPage(WritingPage):
             self.redirect("/%s/writings" % projectid)
             return
         have_error = False
-        kw = {"error_message" : '',
-              "name_value" : self.request.get("name"),
-              "content_value" : self.request.get("content"),
-              "open_p" : self.request.get("open_p") == "True"}
+        parent_url = "/%s/writings" % project.key.integer_id()
+        kw = {
+                    "title" : "New collaborative writing",
+                    "parent_link_text": "Writings",
+                    "parent_link_url": parent_url,
+                    "name_title" : "Title of new writing",
+                    "visiblity_title": "Visiblity",
+                    "content_title" : "Description of new writing",
+                    "submit_button_text": "Create writing",
+                    "name_value" : self.request.get("name"),
+                    "content_value" : self.request.get("content"),
+                    "open_p" : self.request.get("open_p") == "True",
+                    "error_message": ""
+              }
         if not kw["name_value"]:
             have_error = True
             kw["error_message"] += "You must provide a name for your new writing. "
@@ -158,7 +169,7 @@ class NewWritingPage(WritingPage):
             kw["breadcrumb"] = '<li class="active">Collaborative writings</li>'
             kw["markdown_p"] = True
             kw["open_choice_p"] = True
-            self.render("project_form_2.html", project = project, **kw)
+            self.render("project_name_content_visible_form.html", project = project, **kw)
         else:
             new_writing = CollaborativeWritings(title = kw["name_value"],
                                                 description = kw["content_value"],
@@ -273,7 +284,7 @@ class HistoryWritingPage(WritingPage):
             self.render("project_page_not_visible.html", project = project, user = user)
             return
         revisions = self.get_revisions(writing)
-        self.render("writings_history.html", project = project, user = user, writing = writing, hist_p = True, 
+        self.render("writings_history.html", project = project, user = user, writing = writing, hist_p = True,
                     visitor_p = not (user and project.user_is_author(user)), revisions = revisions)
 
 
@@ -397,7 +408,7 @@ class InfoPage(WritingPage):
             return
         if not project.user_is_author(user):
             self.redirect("/%s/writings/%s" % (projectid, writingid))
-            return        
+            return
         have_error = False
         kw = {"title" : self.request.get("title"),
               "description" : self.request.get("description"),

@@ -1,9 +1,5 @@
 {% extends "project_base.html" %}
 
-{% block p_head %}
-    <script type="text/javascript" src="/js/preview.js"></script>
-{% endblock %}
-
 {% block p_content %}
     <h2 class="content-header no-content-action-bar">
         {% if parent_link_text %}
@@ -33,20 +29,50 @@
         </div>
     {% endif %}
 
-    <form method="post" role="form" id="project-name-description-form" class="content-body content-body-form">
+    <form method="post" role="form" id="project-name-description-visible-form" class="content-body content-body-form">
+        <!-- Name input -->
         <section class="form-group {{nClass}} content-section">
             <label for="name" class="title">{{name_title}}</label>
             <input type="text" id="name" name="name" class="form-control input-lg" value="{{name_value}}" autofocus {% if disabled_p %}disabled{% endif %}/>
         </section>
+
+        <!-- Description input -->
         <section class="form-group {{cClass}} content-section">
             <label for="md-editor-{{title | safe | nowhitespace}}" class="title">{{content_title}}</label>
             <textarea id='md-editor-{{title | safe | nowhitespace}}' name="content" class="md-editor" {% if disabled_p %}disabled{% endif %}>{{content_value}}</textarea>
         </section>
+
+        <!-- Visibility input -->
+        <section class="content-section">
+            <div class="title">
+                {{visiblity_title}}
+            </div>
+
+            <hr style="margin: 10px 0;">
+
+            <div class="radio">
+                <label>
+                    <input type="radio" name="open_p" value="True" {% if open_p %}checked{% endif %}/>
+                    Visible to the general public
+                </label>
+            </div>
+
+            <div class="radio">
+                <label>
+                    <input type="radio" name="open_p" value="False" {% if not open_p %}checked{% endif %}/>
+                    Visible only to members of this project
+                </label>
+            </div>
+
+            <hr style="margin: 10px 0;">
+        </section>
+
+        <!-- Submit button -->
         <section class="form-group content-section">
             <button type="submit" class="btn btn-success" {% if visitor_p %}disabled="disabled"{% endif %}>{{submit_button_text}}</button>
         </section>
     </form>
 
     {% import "md_editor.html" as md_editor %}
-    {{ md_editor.init(hide_statusbar = False) }}
+    {{ md_editor.init() }}
 {% endblock %}
