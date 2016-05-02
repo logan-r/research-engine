@@ -56,15 +56,20 @@
 	/** TODO **/
 }
 
+.capitalized-sub-header {
+	font-size: 0.85em;
+	line-height: 0.85em;
+	text-transform: uppercase;
+	color: $dark-color--second;
+	font-weight: bold;
+}
+
 .secondary-header {
 	/**
 	 * A header that exists below another, more important header
 	 */
-	font-size: 0.85em;
-	line-height: 0.85em;
-	text-transform: uppercase;
+	@extend .capitalized-sub-header;
 	color: $base-color--prime;
-	font-weight: bold;
 	padding-left: $spacing-xxs;
 }
 
@@ -120,6 +125,17 @@ html, body {
 			flex: 1 0 auto;
 			margin-bottom: 60px;
 		}
+	}
+}
+
+.content-upper-banner {
+	@extend .container;
+	border-bottom: 1px solid $light-color--second;
+	padding: $spacing-lg 0;
+	margin-top: $spacing-lg;
+	margin-bottom: $spacing-lg * 2;
+
+	> div {
 	}
 }
 
@@ -604,8 +620,6 @@ a {
 	margin-bottom: 0;
 	border-bottom: none;
 	background: $base-color--prime;
-	box-shadow: inset 0 -7px 8px -7px rgba(0, 0, 0, 0.4),
-				inset 0  7px 8px -7px rgba(0, 0, 0, 0.4);
 	border-bottom: 1px solid $dark-color--prime;
 
 	.navbar-brand {

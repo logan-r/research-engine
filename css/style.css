@@ -525,24 +525,24 @@ pre code {
   max-height: 340px;
   overflow-y: scroll; }
 
-.container {
+.container, .content-upper-banner {
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto; }
 
-.container:before, .container:after {
+.container:before, .content-upper-banner:before, .container:after, .content-upper-banner:after {
   display: table;
   content: " "; }
 
-.container:after {
+.container:after, .content-upper-banner:after {
   clear: both; }
 
-.container:before, .container:after {
+.container:before, .content-upper-banner:before, .container:after, .content-upper-banner:after {
   display: table;
   content: " "; }
 
-.container:after {
+.container:after, .content-upper-banner:after {
   clear: both; }
 
 .row {
@@ -609,7 +609,7 @@ pre code {
   width: 100%; }
 
 @media (min-width: 768px) {
-  .container {
+  .container, .content-upper-banner {
     max-width: 750px; }
 
   .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11 {
@@ -750,7 +750,7 @@ pre code {
   .col-sm-offset-11 {
     margin-left: 91.66666666666666%; } }
 @media (min-width: 992px) {
-  .container {
+  .container, .content-upper-banner {
     max-width: 970px; }
 
   .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11 {
@@ -900,7 +900,7 @@ pre code {
   .col-md-offset-11 {
     margin-left: 91.66666666666666%; } }
 @media (min-width: 1200px) {
-  .container {
+  .container, .content-upper-banner {
     max-width: 1170px; }
 
   .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11 {
@@ -2925,12 +2925,12 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 
   .navbar-collapse .navbar-text:last-child {
     margin-right: 0; } }
-.container > .navbar-header, .container > .navbar-collapse {
+.container > .navbar-header, .content-upper-banner > .navbar-header, .container > .navbar-collapse, .content-upper-banner > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px; }
 
 @media (min-width: 768px) {
-  .container > .navbar-header, .container > .navbar-collapse {
+  .container > .navbar-header, .content-upper-banner > .navbar-header, .container > .navbar-collapse, .content-upper-banner > .navbar-collapse {
     margin-right: 0;
     margin-left: 0; } }
 .navbar-static-top {
@@ -2966,7 +2966,7 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
   text-decoration: none; }
 
 @media (min-width: 768px) {
-  .navbar > .container .navbar-brand {
+  .navbar > .container .navbar-brand, .navbar > .content-upper-banner .navbar-brand {
     margin-left: -15px; } }
 .navbar-toggle {
   position: relative;
@@ -3497,7 +3497,7 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
 .jumbotron p {
   line-height: 1.4; }
 
-.container .jumbotron {
+.container .jumbotron, .content-upper-banner .jumbotron {
   border-radius: 6px; }
 
 @media screen and (min-width: 768px) {
@@ -3505,7 +3505,7 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
     padding-top: 48px;
     padding-bottom: 48px; }
 
-  .container .jumbotron {
+  .container .jumbotron, .content-upper-banner .jumbotron {
     padding-right: 60px;
     padding-left: 60px; }
 
@@ -5092,15 +5092,18 @@ th.visible-print, td.visible-print {
 .sub-header {
   /** TODO **/ }
 
+.capitalized-sub-header, .secondary-header, .content-body .title {
+  font-size: 0.85em;
+  line-height: 0.85em;
+  text-transform: uppercase;
+  color: #777777;
+  font-weight: bold; }
+
 .secondary-header, .content-body .title {
   /**
    * A header that exists below another, more important header
    */
-  font-size: 0.85em;
-  line-height: 0.85em;
-  text-transform: uppercase;
   color: #506C6A;
-  font-weight: bold;
   padding-left: 2px; }
 
 /** TYPOGRAPHY **/
@@ -5140,6 +5143,12 @@ html, body {
     html #wrap #page-content, body #wrap #page-content {
       flex: 1 0 auto;
       margin-bottom: 60px; }
+
+.content-upper-banner {
+  border-bottom: 1px solid #EEEEEE;
+  padding: 16px 0;
+  margin-top: 16px;
+  margin-bottom: 32px; }
 
 .content-header {
   margin: 0;
@@ -5451,7 +5460,6 @@ a {
   margin-bottom: 0;
   border-bottom: none;
   background: #506C6A;
-  box-shadow: inset 0 -7px 8px -7px rgba(0, 0, 0, 0.4), inset 0 7px 8px -7px rgba(0, 0, 0, 0.4);
   border-bottom: 1px solid #333333; }
   .navbar .navbar-brand {
     font-family: "Titillium Web", Helvetica, sans-serif; }
